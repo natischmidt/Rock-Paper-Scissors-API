@@ -5,7 +5,7 @@ import java.util.UUID;
 public class PlayerService {
     PlayerRepo playerRepo;
 
-    public PlayerEntity createGame(UUID playerid) {
+    public PlayerEntity createPlayer(UUID playerid) {
         PlayerEntity playerEntity = new PlayerEntity(
                 UUID.randomUUID()
 
