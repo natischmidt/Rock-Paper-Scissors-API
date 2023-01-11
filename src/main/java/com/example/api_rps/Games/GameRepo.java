@@ -1,5 +1,4 @@
 package com.example.api_rps.Games;
-import com.example.api_rps.Games.GameEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;

@@ -3,7 +3,6 @@ package com.example.api_rps.Games;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class GameController {
 
     GameService gameService;
 
-    private static List<Game> games = new ArrayList<>();
+    private static List<GameEntity> gameEntities = new ArrayList<>();
 
 
 //
@@ -34,22 +33,22 @@ public class GameController {
    // }
 
 
-    private static Game toDTO(GameEntity gameEntity) {
-        return new Game(
+    private static GameEntity toDTO(GameEntity gameEntity) {
+        return new GameEntity(
         );
     }
 
     @PostMapping("/games/start")
-    public Game createGame(@RequestBody CreateGame createGame) {
+    public GameEntity createGame(@RequestBody CreateGame createGame) {
         return toDTO(
                 gameService.createGame(
                         createGame.getUuid()));
 
     }
 
-    @PostMapping("/start")
+    //@PostMapping("/start")
 
-
+//wip
 
 //    @PostMapping("/games/start") // Create new game
 //    public String createGame(@RequestBody Map<UUID, String> body) {

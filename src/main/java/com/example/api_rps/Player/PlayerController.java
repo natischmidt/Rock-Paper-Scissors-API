@@ -1,6 +1,6 @@
 package com.example.api_rps.Player;
 
-import com.example.api_rps.Games.Game;
+import com.example.api_rps.Games.GameEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ public class PlayerController {
 
     PlayerService playerService;
 
-    private static List<Game> players = new ArrayList<>();
+    private static List<GameEntity> players = new ArrayList<>();
 
 
     @GetMapping("auth/token")

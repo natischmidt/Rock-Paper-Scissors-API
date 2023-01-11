@@ -1,15 +1,15 @@
 package com.example.api_rps.Games;
 
-import com.example.api_rps.Games.GameEntity;
-import com.example.api_rps.Games.GameNotFoundExeption;
-import com.example.api_rps.Games.GameRepo;
 import com.example.api_rps.Player.PlayerRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import static com.example.api_rps.Games.GameStatus.*;
+import java.util.Optional;
+import java.util.stream.Stream;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
@@ -31,12 +31,17 @@ public class GameService {
         GameEntity gameEntity = new GameEntity(
                 UUID.randomUUID(),
                 playerRepo.findById(playerid).get(),
+                null,
+                null,
+                null,
+                OPEN
 
 
+        );
 
+        gameRepo.save(gameEntity);
+        playerRepo.getReferenceById(playerid).
 
-
-        )
 
     }
     public GameEntity createGame(UUID uuid) {
