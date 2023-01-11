@@ -17,6 +17,7 @@ import java.util.UUID;
     @Getter
     @Setter
     @AllArgsConstructor
+    @NoArgsConstructor
 
 
     public class GameEntity {
@@ -30,19 +31,6 @@ import java.util.UUID;
         private String opponentName;
         @Enumerated(EnumType.STRING)
         private Move opponentMove;
-
-        public GameEntity(UUID uuid, String userName, String playerMove, String gamestatus, String opponentName, String opponentMove) {
-            this.uuid = uuid;
-            this.userName = userName;
-            this.playerMove = Move.valueOf(playerMove);
-            this.gamestatus = GameStatus.valueOf(gamestatus);
-            this.opponentName = opponentName;
-            this.opponentMove = Move.valueOf(opponentMove);
-        }
-
-        public GameEntity() {
-
-        }
 
 
 
