@@ -4,6 +4,14 @@ package com.example.api_rps;
 import java.util.UUID;
 
 public class Player {
+    public UUID getPlayerid() {
+        return playerid;
+    }
+
+    public void setPlayerid(UUID playerid) {
+        this.playerid = playerid;
+    }
+
     private UUID playerid;
     private final String userName;
     private Move playerMove;
