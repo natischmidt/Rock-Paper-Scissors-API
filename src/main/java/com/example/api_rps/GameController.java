@@ -46,21 +46,30 @@ public class GameController {
                         createGame.getUuid()));
 
     }
-    @PostMapping("/games/start") // Create new game
-    public String createGame(@RequestBody Map<UUID, String> body) {
-        Game newGame = new Game();
-        //error here wip
-        UUID uuid = newGame.getUuid();
-        String playerUsername = body.get("name");
+//    @PostMapping("/games/start") // Create new game
+//    public String createGame(@RequestBody Map<UUID, String> body) {
+//        Game newGame = new Game();
+//        //error here wip
+//        UUID uuid = newGame.getUuid();
+//        String playerUsername = body.get("name");
+//
+//        if (playerUsername != null && !playerUsername.isEmpty()) {
+//            newGame.addPlayer(playerUsername);
+//            games.add(newGame);
+//            return
+//
+//        }
+//       return
+//    }
 
-        if (playerUsername != null && !playerUsername.isEmpty()) {
-            newGame.addPlayer(playerUsername);
-            games.add(newGame);
-            return
+    //    @PostMapping
+//    Game createGame(@RequestBody CreateGame createGame) {
+//        return new Game(
+//                createGame.getUUID(),
+//                createGame.getSessionName()
+//
+//        );
 
-        }
-       return
-    }
 
 
 
