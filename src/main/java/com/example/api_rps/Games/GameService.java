@@ -1,5 +1,8 @@
-package com.example.api_rps;
+package com.example.api_rps.Games;
 
+import com.example.api_rps.Games.GameEntity;
+import com.example.api_rps.Games.GameNotFoundExeption;
+import com.example.api_rps.Games.GameRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

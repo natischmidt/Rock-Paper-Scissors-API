@@ -1,4 +1,4 @@
-package com.example.api_rps;
+package com.example.api_rps.Games;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

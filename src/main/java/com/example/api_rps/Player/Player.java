@@ -1,6 +1,7 @@
-package com.example.api_rps;
+package com.example.api_rps.Player;
 
 
+import com.example.api_rps.Move;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

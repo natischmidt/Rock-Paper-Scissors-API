@@ -1,10 +1,8 @@
-package com.example.api_rps;
+package com.example.api_rps.Games;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,6 @@
 package com.example.api_rps;
 
+import com.example.api_rps.Player.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

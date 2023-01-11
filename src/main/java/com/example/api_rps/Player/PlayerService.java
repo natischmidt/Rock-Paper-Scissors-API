@@ -1,5 +1,7 @@
-package com.example.api_rps;
+package com.example.api_rps.Player;
 
+import com.example.api_rps.Player.PlayerEntity;
+import com.example.api_rps.Player.PlayerRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

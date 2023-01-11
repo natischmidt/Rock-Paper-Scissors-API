@@ -1,4 +1,5 @@
-package com.example.api_rps;
+package com.example.api_rps.Player;
+import com.example.api_rps.Player.PlayerEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.stream.Stream;
 @Component
 public class PlayerRepo {
 
-    Map<String,PlayerEntity> players= new HashMap<>();
+    Map<String, PlayerEntity> players= new HashMap<>();
 
     public Stream<PlayerEntity> all() {
         return players.values().stream();

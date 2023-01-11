@@ -1,4 +1,4 @@
-package com.example.api_rps;
+package com.example.api_rps.Games;
 
 public enum GameStatus {
     NONE,
