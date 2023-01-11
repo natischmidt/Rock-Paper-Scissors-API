@@ -6,5 +6,6 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 public class PlayerEntity {
+
     UUID playerid;
 }
