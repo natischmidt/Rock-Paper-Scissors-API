@@ -3,6 +3,8 @@ package com.example.api_rps;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +39,27 @@ public class GameController {
         );
     }
 
-    @GetMapping("/games/start")
+    @PostMapping("/games/start")
     public Game createGame(@RequestBody CreateGame createGame) {
         return toDTO(
                 gameService.createGame(
                         createGame.getUuid()));
 
+    }
+    @PostMapping("/games/start") // Create new game
+    public String createGame(@RequestBody Map<UUID, String> body) {
+        Game newGame = new Game();
+        //error here wip
+        UUID uuid = newGame.getUuid();
+        String playerUsername = body.get("name");
+
+        if (playerUsername != null && !playerUsername.isEmpty()) {
+            newGame.addPlayer(playerUsername);
+            games.add(newGame);
+            return
+
+        }
+       return
     }
 
 
