@@ -1,15 +1,14 @@
 package com.example.api_rps;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/games")
+@RequestMapping("/games")
 @AllArgsConstructor
 
 public class GameController {
@@ -36,6 +35,14 @@ public class GameController {
     private static Game toDTO(GameEntity gameEntity) {
         return new Game(
         );
+    }
+
+    @GetMapping("/games/start")
+    public Game createGame(@RequestBody CreateGame createGame) {
+        return toDTO(
+                gameService.createGame(
+                        createGame.getUuid()));
+
     }
 
 

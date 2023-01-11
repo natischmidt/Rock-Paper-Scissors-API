@@ -15,9 +15,7 @@ import java.util.stream.Collectors;
 //aka PlayerController
 public class Token {
 
-
-
-
+    @GetMapping
     private static Player toDTO(PlayerEntity playerEntity) {
         return new Player(
         );
