@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
@@ -13,8 +14,14 @@ public class GameController {
 
     GameService gameService;
 
-    private static List<GameEntity> gameEntities = new ArrayList<>();
+   // private static List<GameEntity> gameEntities = new ArrayList<>();
+    @PostMapping("/start")
+    public GameContainer startGame(@RequestHeader(value = "token") UUID playerId) {
 
+        return gameService.Start(playerId)
+                .map(this::GametoDTO)
+                .orElse(null);
+    }
 
 //
 //    @GetMapping
@@ -33,8 +40,14 @@ public class GameController {
    // }
 
 
-    private static GameEntity toDTO(GameEntity gameEntity) {
-        return new GameEntity(
+    private GameContainer GametoDTO(GameEntity gameEntity) {
+        return new GameContainer(
+                gameEntity.getUuid(),
+                gameEntity.getPlayerOne(),
+                gameEntity.getPlayerMove(),
+                gameEntity.getPlayerTwo(),
+                gameEntity.getOpponentMove(),
+                gameEntity.getGamestatus()
         );
     }
 
