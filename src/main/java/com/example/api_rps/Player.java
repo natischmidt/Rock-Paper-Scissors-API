@@ -14,7 +14,6 @@ public class Player {
         }
     }
 
-
     String getPlayername(){
         return userName;
     }
