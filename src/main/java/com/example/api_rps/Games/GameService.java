@@ -18,31 +18,29 @@ public class GameService {
     GameRepo gameRepo;
     PlayerRepo playerRepo;
 
-    public Stream<GameEntity> all() {
-        return gameRepo.all();
-    }
+//    public Stream<GameEntity> all() {
+//        return gameRepo.all();
+//    }
+//
+//    public GameEntity get(UUID uuid) throws GameNotFoundExeption {
+//        return gameRepo.get(uuid)
+//                .orElseThrow(() -> new GameNotFoundExeption(uuid));
+//    }
 
-    public GameEntity get(UUID uuid) throws GameNotFoundExeption {
-        return gameRepo.get(uuid)
-                .orElseThrow(() -> new GameNotFoundExeption(uuid));
-    }
-
-    public Optional <GameEntity> Start (UUID playerid) {
+    public Optional<GameEntity> Start(UUID playerId) {
         GameEntity gameEntity = new GameEntity(
                 UUID.randomUUID(),
-                playerRepo.findById(playerid).get(),
+                playerRepo.findById(playerId).get(),
                 null,
                 null,
                 null,
                 OPEN
-
-
         );
 
         gameRepo.save(gameEntity);
-        playerRepo.getReferenceById(playerid).(gameEntity);
+        playerRepo.getReferenceById(playerId).setP1Game(gameEntity);
 
-
+        return Optional.of(gameEntity);
     }
 //    public GameEntity createGame(UUID uuid) {
 //        GameEntity gameEntity = new GameEntity(
