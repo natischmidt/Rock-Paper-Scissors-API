@@ -8,20 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/games")
 @AllArgsConstructor
 
 public class GameController {
 
     GameService gameService;
+
     private static List<Game> games = new ArrayList<>();
 
-    @GetMapping
-    public List<Game> all() {
-        return gameService.all()
-                .map(GameController::toDTO)
-                .collect(Collectors.toList());
-    }
+
+//
+//    @GetMapping
+//    public List<Game> all() {
+//        return gameService.all()
+//                .map(GameController::toDTO)
+//                .collect(Collectors.toList());
+  //  }
     //testing
 //    public List<Game> all() {
 //        return List.of(
@@ -44,6 +46,11 @@ public class GameController {
                         createGame.getUuid()));
 
     }
+
+    @PostMapping("/start")
+
+
+
 //    @PostMapping("/games/start") // Create new game
 //    public String createGame(@RequestBody Map<UUID, String> body) {
 //        Game newGame = new Game();

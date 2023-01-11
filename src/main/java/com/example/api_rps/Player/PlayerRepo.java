@@ -1,5 +1,6 @@
 package com.example.api_rps.Player;
 import com.example.api_rps.Player.PlayerEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -9,7 +10,8 @@ import java.util.UUID;
 import java.util.stream.Stream;
 
 @Component
-public class PlayerRepo {
+//getting error here wip
+public class PlayerRepo  extends JpaRepository<PlayerEntity, UUID> {
 
     Map<String, PlayerEntity> players= new HashMap<>();
 

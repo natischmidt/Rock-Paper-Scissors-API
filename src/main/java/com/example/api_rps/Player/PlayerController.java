@@ -2,8 +2,7 @@ package com.example.api_rps.Player;
 
 import com.example.api_rps.Games.Game;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.UUID;
 @RestController
 @AllArgsConstructor
 
-//aka PlayerController
 public class PlayerController {
 
     PlayerService playerService;
@@ -36,6 +34,7 @@ public class PlayerController {
         return new Player(
         );
     }
+
 
 
 }
