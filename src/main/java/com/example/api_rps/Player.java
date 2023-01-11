@@ -1,7 +1,10 @@
 package com.example.api_rps;
 
 
+import java.util.UUID;
+
 public class Player {
+    private UUID playerid;
     private final String userName;
     private Move playerMove;
 
