@@ -8,7 +8,6 @@ import java.util.UUID;
 
 //firstly building the class with properties
 
-
     @Entity
     public class Game {
         @Id

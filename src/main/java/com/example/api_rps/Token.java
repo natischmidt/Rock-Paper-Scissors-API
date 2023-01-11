@@ -12,8 +12,16 @@ import java.util.stream.Collectors;
 @RequestMapping("/auth/token")
 @AllArgsConstructor
 
+//aka PlayerController
 public class Token {
 
+
+
+
+    private static Player toDTO(PlayerEntity playerEntity) {
+        return new Player(
+        );
+    }
 
 
 }
