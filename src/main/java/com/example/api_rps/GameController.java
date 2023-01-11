@@ -23,6 +23,15 @@ public class GameController {
                 .map(GameController::toDTO)
                 .collect(Collectors.toList());
     }
+    //testing
+//    public List<Game> all() {
+//        return List.of(
+//                new Game(),
+//                new Game()
+//
+//        );
+   // }
+
 
     private static Game toDTO(GameEntity gameEntity) {
         return new Game(
