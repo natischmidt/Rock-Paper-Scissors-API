@@ -33,4 +33,8 @@ public class PlayerEntity {
     @JsonIgnore
     private GameEntity p2Game;
 
+    public PlayerEntity(UUID playerid) {
+        this.playerid = playerid;
+    }
+
 }

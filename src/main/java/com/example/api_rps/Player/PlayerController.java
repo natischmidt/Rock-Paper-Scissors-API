@@ -30,10 +30,10 @@ public class PlayerController {
 
 //    @GetMapping
 
-    private static Player toDTO(PlayerEntity playerEntity) {
-        return new Player(
-        );
-    }
+//    private static Player toDTO(PlayerEntity playerEntity) {
+//        return new Player(
+//        );
+//    }
 
 
 

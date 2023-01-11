@@ -15,19 +15,12 @@ public class PlayerService {
 
     PlayerRepo playerRepo;
 
-
-    public Stream<PlayerEntity> all() {
-        return playerRepo.all();
-    }
-
-
-
     public PlayerEntity createPlayer() {
         PlayerEntity playerEntity = new PlayerEntity(
                 UUID.randomUUID()
-
         );
         playerRepo.save(playerEntity);
         return playerEntity;
 
-}}
+    }
+}

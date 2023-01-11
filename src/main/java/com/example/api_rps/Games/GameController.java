@@ -38,13 +38,13 @@ public class GameController {
         );
     }
 
-    @PostMapping("/games/start")
-    public GameEntity Start(@RequestBody CreateGame createGame) {
-        return toDTO(
-                gameService.Start(
-                        createGame.getUuid()));
-
-    }
+//    @PostMapping("/games/start")
+//    public GameEntity Start(@RequestBody CreateGame createGame) {
+//        return toDTO(
+//                gameService.Start(
+//                        createGame.getUuid()));
+//
+//    }
 
     //@PostMapping("/start")
 
