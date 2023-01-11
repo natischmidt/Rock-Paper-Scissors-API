@@ -38,12 +38,12 @@ public class GameService {
 
 
         );
-//
-//        gameRepo.save(gameEntity);
-//        playerRepo.getReferenceById(playerid).
-//
-//
-//    }
+
+        gameRepo.save(gameEntity);
+        playerRepo.getReferenceById(playerid).(gameEntity);
+
+
+    }
 //    public GameEntity createGame(UUID uuid) {
 //        GameEntity gameEntity = new GameEntity(
 //                UUID.randomUUID()
