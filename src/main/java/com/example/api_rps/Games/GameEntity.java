@@ -23,12 +23,17 @@ import java.util.UUID;
     public class GameEntity {
         @Id
         private UUID uuid;
+
         private String userName;
+
         @Enumerated(EnumType.STRING)
         private Move playerMove;
+
         @Enumerated(EnumType.STRING)
         private GameStatus gamestatus;
+
         private String opponentName;
+
         @Enumerated(EnumType.STRING)
         private Move opponentMove;
 

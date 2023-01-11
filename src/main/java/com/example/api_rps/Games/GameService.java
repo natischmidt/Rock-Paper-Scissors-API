@@ -38,17 +38,17 @@ public class GameService {
 
 
         );
-
-        gameRepo.save(gameEntity);
-        playerRepo.getReferenceById(playerid).
-
-
-    }
-    public GameEntity createGame(UUID uuid) {
-        GameEntity gameEntity = new GameEntity(
-                UUID.randomUUID()
-
-        );
-        return gameRepo.save(gameEntity);
-    }
+//
+//        gameRepo.save(gameEntity);
+//        playerRepo.getReferenceById(playerid).
+//
+//
+//    }
+//    public GameEntity createGame(UUID uuid) {
+//        GameEntity gameEntity = new GameEntity(
+//                UUID.randomUUID()
+//
+////        );
+//        return gameRepo.save(gameEntity);
+//    }
 }

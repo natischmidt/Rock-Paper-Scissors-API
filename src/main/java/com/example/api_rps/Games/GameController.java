@@ -39,9 +39,9 @@ public class GameController {
     }
 
     @PostMapping("/games/start")
-    public GameEntity createGame(@RequestBody CreateGame createGame) {
+    public GameEntity Start(@RequestBody CreateGame createGame) {
         return toDTO(
-                gameService.createGame(
+                gameService.Start(
                         createGame.getUuid()));
 
     }
