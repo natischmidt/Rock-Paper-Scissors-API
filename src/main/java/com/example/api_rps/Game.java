@@ -17,13 +17,7 @@ import java.util.UUID;
         private String opponentName;
         private Move opponentMove;
 
-        //Constructor
-        public Game(UUID uuid,
-                    String userName,
-                    Move playerMove,
-                    GameStatus gamestatus,
-                    String opponentName,
-                    Move opponentMove) {
+        public Game(UUID uuid, String userName, Move playerMove, GameStatus gamestatus, String opponentName, Move opponentMove) {
             this.uuid = uuid;
             this.userName = userName;
             this.playerMove = playerMove;
@@ -31,6 +25,11 @@ import java.util.UUID;
             this.opponentName = opponentName;
             this.opponentMove = opponentMove;
         }
+
+        public Game() {
+
+        }
+
 
         //Getters and setters
         public UUID getUuid() {
