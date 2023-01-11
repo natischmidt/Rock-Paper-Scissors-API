@@ -21,11 +21,11 @@ public class Token {
 
 
     @GetMapping
-    public List<Player> all() {
-        return playerService.all()
-                .map(Token::toDTO)
-                .collect(Collectors.toList());
-    }
+//    public List<Player> all() {
+//        return playerService.all()
+//                .map(Token::toDTO)
+//                .collect(Collectors.toList());
+//    }
 
 //    @GetMapping
 
