@@ -1,12 +1,15 @@
 package com.example.api_rps.Player;
 import com.example.api_rps.Player.PlayerEntity;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 @Component
@@ -25,4 +28,5 @@ public class PlayerRepo  extends JpaRepository<PlayerEntity, UUID> {
     public Optional<PlayerEntity> get(UUID playerid) {
         return Optional.ofNullable(players.get(playerid));
     }
+
 }
