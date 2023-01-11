@@ -1,5 +1,4 @@
 package com.example.api_rps.Games;
-import com.example.api_rps.Move;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
