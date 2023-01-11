@@ -6,11 +6,9 @@ import org.springframework.stereotype.Service;
 
 import static com.example.api_rps.Games.GameStatus.*;
 import java.util.Optional;
-import java.util.stream.Stream;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
-
+import static com.example.api_rps.Games.GameStatus.*;
 @Service
 @AllArgsConstructor
 public class GameService {
@@ -18,6 +16,24 @@ public class GameService {
     GameRepo gameRepo;
     PlayerRepo playerRepo;
 
+    public Optional<GameEntity> Start(UUID playerId) {
+        GameEntity gameEntity = new GameEntity
+                (
+                UUID.randomUUID(),
+                playerRepo.findById(playerId).get(),
+                null,
+                OPEN,
+                null,
+                null,
+                null
+        );
+
+
+        gameRepo.save(gameEntity);
+        playerRepo.getReferenceById(playerId).setP1Game(gameEntity);
+
+        return Optional.of(gameEntity);
+    }
 //    public Stream<GameEntity> all() {
 //        return gameRepo.all();
 //    }
@@ -27,21 +43,8 @@ public class GameService {
 //                .orElseThrow(() -> new GameNotFoundExeption(uuid));
 //    }
 
-//    public Optional<GameEntity> Start(UUID playerId) {
-//        GameEntity gameEntity = new GameEntity(
-//                UUID.randomUUID(),
-//                playerRepo.findById(playerId).get(),
-//                null,
-//                null,
-//                null,
-//                OPEN
-//        );
-//
-//        gameRepo.save(gameEntity);
-//        playerRepo.getReferenceById(playerId).setP1Game(gameEntity);
-//
-//        return Optional.of(gameEntity);
-//    }
+
+
 //    public GameEntity createGame(UUID uuid) {
 //        GameEntity gameEntity = new GameEntity(
 //                UUID.randomUUID()

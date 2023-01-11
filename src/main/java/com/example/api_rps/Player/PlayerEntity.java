@@ -17,13 +17,14 @@ import java.util.UUID;
 public class PlayerEntity {
 
     @Id
+    @Column(name = "player_uuid")
     private UUID playerid;
 
     @Column(name = "username")
     private  String userName;
-
-    @Enumerated(EnumType.STRING)
-    private Move playerMove;
+//
+//    @Enumerated(EnumType.STRING)
+//    private Move playerMove;
 
     @OneToOne(mappedBy = "playerOne")
     @JsonIgnore
