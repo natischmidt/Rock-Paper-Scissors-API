@@ -4,12 +4,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.UUID;
 
 //firstly building the class with properties
 
     @Entity
+    @Getter
+    @Setter
+    @AllArgsConstructor
+
 
     public class GameEntity {
         @Id
@@ -37,53 +45,5 @@ import java.util.UUID;
         }
 
 
-        //Getters and setters
-        public UUID getUuid() {
-            return uuid;
-        }
-
-        public void setUuid(UUID uuid) {
-            this.uuid = uuid;
-        }
-
-        public String getUserName() {
-            return userName;
-        }
-
-        public void setUserName(String userName) {
-            this.userName = userName;
-        }
-
-        public Move getPlayerMove() {
-            return playerMove;
-        }
-
-        public void setPlayerMove(Move playerMove) {
-            this.playerMove = playerMove;
-        }
-
-        public GameStatus getGamestatus() {
-            return gamestatus;
-        }
-
-        public void setGamestatus(GameStatus gamestatus) {
-            this.gamestatus = gamestatus;
-        }
-
-        public String getOpponentName() {
-            return opponentName;
-        }
-
-        public void setOpponentName(String opponentName) {
-            this.opponentName = opponentName;
-        }
-
-        public Move getOpponentMove() {
-            return opponentMove;
-        }
-
-        public void setOpponentMove(Move opponentMove) {
-            this.opponentMove = opponentMove;
-        }
 
 }
