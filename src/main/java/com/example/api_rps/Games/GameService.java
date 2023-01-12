@@ -16,6 +16,7 @@ public class GameService {
     GameRepo gameRepo;
     PlayerRepo playerRepo;
 
+    //When starting a game I set all of the variabels to NULL so they can be filled in later because right now all i want to do is create a new empty game, i put the gamestatus OPEN
     public Optional<GameEntity> Start(UUID playerId) {
         GameEntity gameEntity = new GameEntity
                 (
@@ -29,6 +30,7 @@ public class GameService {
         );
 
 
+        //Saving gameentity to the repo
         gameRepo.save(gameEntity);
         playerRepo.getReferenceById(playerId).setP1Game(gameEntity);
 
@@ -39,4 +41,6 @@ public class GameService {
     public List<GameEntity> OpenGames() {
         return gameRepo.findAll();
     }
+
+    public Optional <GameEntity> Info (UUID )
 }

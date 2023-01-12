@@ -20,7 +20,7 @@ import java.util.UUID;
 
     public class GameEntity {
         @Id
-        @Column(name = "player_uuid")
+        @Column(name = "game_uuid")
         private UUID uuid;
 
         @OneToOne
