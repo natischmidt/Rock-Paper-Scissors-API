@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -21,6 +22,15 @@ public class GameController {
         return gameService.Start(playerId)
                 .map(this::GametoDTO)
                 .orElse(null);
+    }
+
+    @GetMapping("/games")
+    public List<GameEntity> OpenGames() {
+        return gameService.OpenGames()
+                .stream()
+                .filter(games -> games.
+                        equals(GameStatus.OPEN))  // filter games on status OPEN
+                .collect(Collectors.toList());                          // collect them to a list
     }
 
 //

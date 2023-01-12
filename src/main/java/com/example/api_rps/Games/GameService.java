@@ -34,6 +34,7 @@ public class GameService {
 
         return Optional.of(gameEntity);
     }
+
 //    public Stream<GameEntity> all() {
 //        return gameRepo.all();
 //    }
@@ -52,4 +53,9 @@ public class GameService {
 ////        );
 //        return gameRepo.save(gameEntity);
 //    }
+
+    //return all open games
+    public List<GameEntity> OpenGames() {
+        return gameRepo.findAll();
+    }
 }

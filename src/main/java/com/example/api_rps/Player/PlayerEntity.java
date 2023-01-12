@@ -17,11 +17,11 @@ import java.util.UUID;
 public class PlayerEntity {
 
     @Id
-    @Column(name = "player_uuid")
+    @Column(name = "player_id")
     private UUID playerid;
 
     @Column(name = "username")
-    private  String userName;
+    private String userName;
 //
 //    @Enumerated(EnumType.STRING)
 //    private Move playerMove;
