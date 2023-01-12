@@ -27,7 +27,7 @@ public class GameController {
     }
 
     //Join Game
-
+//tested working, u can join games
     @PostMapping("/join/{gameId}")
     public GameContainer joinGame(@RequestHeader(value = "token") UUID playerId,
                                @PathVariable("gameId") UUID gameId) throws GameNotFoundExeption {
