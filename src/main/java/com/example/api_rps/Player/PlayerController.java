@@ -17,11 +17,13 @@ public class PlayerController {
 
     private static List<GameEntity> players = new ArrayList<>();
 
+    //tested working
     @GetMapping("auth/token")
     public UUID createPlayer(){
         return playerService.createPlayer().getPlayerid();
     }
 
+    //tested working
     @PostMapping("/user/name")
     public void setPlayerName(@RequestBody PlayerContainer playerContainer,
                               @RequestHeader(value = "token") UUID playerId)  {
