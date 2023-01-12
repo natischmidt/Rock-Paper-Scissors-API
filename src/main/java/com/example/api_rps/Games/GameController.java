@@ -2,8 +2,6 @@ package com.example.api_rps.Games;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -17,8 +15,9 @@ public class GameController {
 
 
    // private static List<GameEntity> gameEntities = new ArrayList<>();
-    //problem det att testa detta
-    @PostMapping("/start")
+    //Start Game
+    //tested and working
+    @PostMapping("/games/start")
     public GameContainer startGame(@RequestHeader(value = "token") UUID playerId) {
 
         return gameService.Start(playerId)
@@ -26,6 +25,8 @@ public class GameController {
                 .orElse(null);
     }
 
+    // Game list
+    //here i list open games
     @GetMapping("/games")
     public List<GameEntity> OpenGames() {
         return gameService.OpenGames()
