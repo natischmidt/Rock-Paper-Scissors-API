@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static org.hibernate.Hibernate.map;
+
 @RestController
 @AllArgsConstructor
 
@@ -68,7 +70,9 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 @PostMapping("/games/move/{sign}")
 public void setPlayerMove(@PathVariable("sign") String sign,@RequestBody GameContainer gameContainer,
                           @RequestHeader(value = "token") UUID playerId)  {
-    gameService.setuserMove(gameContainer, playerId);
+
+   gameService.setuserMove(sign,gameContainer, playerId);
+
 }
 
 

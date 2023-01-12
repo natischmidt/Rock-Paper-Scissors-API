@@ -18,12 +18,27 @@ public class GameService {
     PlayerRepo playerRepo;
 
 
-    public void setuserMove(GameContainer gameContainer, UUID playerid) {
+    public void setuserMove(String sign,GameContainer gameContainer, UUID playerid) {
         Optional<GameEntity> gameEntity = gameRepo.findById(playerid);
         if (gameEntity.isPresent()) {
-            gameEntity.get().setPlayerMove(gameContainer.playerMove());
-            gameRepo.save(gameEntity.get());
+            switch (sign) {
+                case "rock" -> {
+                    gameEntity.get().setPlayerMove(Move.ROCK);
+                    gameEntity.get().setPlayerMove(gameContainer.playerMove());
+                    gameRepo.save(gameEntity.get());
+                }
+                case "paper" -> {
+                    gameEntity.get().setPlayerMove(Move.PAPER);
+                    gameEntity.get().setPlayerMove(gameContainer.playerMove());
+                    gameRepo.save(gameEntity.get());
+                }
+                case "scissors" -> {
+                    gameEntity.get().setPlayerMove(Move.SCISSOR);
+                    gameEntity.get().setPlayerMove(gameContainer.playerMove());
+                    gameRepo.save(gameEntity.get());
+                }
 
+            }
         }
     }
     //When starting a game I set all of the variabels to NULL so they can be filled in later because right now all i want to do is create a new empty game, i put the gamestatus OPEN
