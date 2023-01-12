@@ -70,10 +70,12 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 //i dont want to request the body just put the info via pathvariabel
 
 @PostMapping("/games/move/{sign}")
-public void setPlayerMove(@PathVariable("sign") String sign,
-                          @RequestHeader(value = "token") UUID playerId) throws GameNotFoundExeption {
-
-   gameService.setuserMove(sign,playerId);
+public GameContainer setPlayerMove(@PathVariable("sign") String sign,
+                          @RequestHeader(value = "token") UUID playerid,
+                          @RequestBody GameContainer gameContainer) throws GameNotFoundExeption {
+        return gameService.setMove(sign,playerid,gameContainer)
+                .map(this::GametoDTO)
+                .orElse(null);
 
 }
 

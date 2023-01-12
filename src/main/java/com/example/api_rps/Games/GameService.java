@@ -18,13 +18,13 @@ public class GameService {
     PlayerRepo playerRepo;
 
 
-    public Optional <GameEntity> setuserMove(String sign, UUID playerid) throws GameNotFoundExeption {
-
+    public Optional<GameEntity> setMove(String sign,
+                                         UUID playerid,
+                                         GameContainer gameContainer) throws GameNotFoundExeption {
         GameEntity gameEntity;
 
-        if (gameRepo.existsById(gameEntity.getUuid())){
-            gameEntity = gameRepo.findById(gameEntity.getUuid()).get();
-
+        if (gameRepo.existsById(gameContainer.uuid())) {
+            gameEntity = gameRepo.findById(gameContainer.uuid()).get();
             if (gameEntity.playerOne.getPlayerid().equals(playerid)) {
                 switch (sign) {
                     case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
@@ -32,7 +32,6 @@ public class GameService {
                     case "scissors" -> gameEntity.setPlayerMove(Move.SCISSOR);
                 }
             }
-
             if (gameEntity.playerTwo.getPlayerid().equals(playerid)) {
                 switch (sign) {
                     case "rock" -> gameEntity.setOpponentMove(Move.ROCK);
@@ -40,15 +39,15 @@ public class GameService {
                     case "scissors" -> gameEntity.setOpponentMove(Move.SCISSOR);
                 }
             }
-
         } else {
-            throw new GameNotFoundExeption("Game doesnt exist");
+            throw new GameNotFoundExeption ("Game doesnt");
         }
+
+
+
         gameRepo.save(gameEntity);
 
         return Optional.of(gameEntity);
-
-
     }
     //When starting a game I set all of the variabels to NULL so they can be filled in later because right now all i want to do is create a new empty game, i put the gamestatus OPEN
     public Optional<GameEntity> Start(UUID playerId) {
