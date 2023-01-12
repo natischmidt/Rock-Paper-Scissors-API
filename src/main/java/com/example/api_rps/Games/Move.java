@@ -24,11 +24,13 @@ public enum Move {
     };
 
 
+    public static Boolean validMove(String move) {
+        return move != null;
+    }
+
     //abstract so that I can override it
     public abstract boolean wins_over(Move opposed);
 
-    public static Boolean validMove(String turn) {
-        return turn != null;
-    }
+
 
 }
