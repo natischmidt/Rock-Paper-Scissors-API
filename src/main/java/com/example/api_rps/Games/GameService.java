@@ -42,5 +42,11 @@ public class GameService {
         return gameRepo.findAll();
     }
 
-    public Optional <GameEntity> Info (UUID )
+    public Optional <GameEntity> Info (UUID game_uuid) {
+        GameEntity gameEntity;
+
+
+
+    }
+
 }
