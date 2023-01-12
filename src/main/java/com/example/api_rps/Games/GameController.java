@@ -60,6 +60,11 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
     //Make move
 @PostMapping("/games/move/{sign}")
 
+
+
+
+
+
     private GameContainer GametoDTO(GameEntity gameEntity) {
         return new GameContainer(
                 gameEntity.getUuid(),
