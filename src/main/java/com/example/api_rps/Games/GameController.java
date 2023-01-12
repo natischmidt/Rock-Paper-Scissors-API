@@ -2,6 +2,7 @@ package com.example.api_rps.Games;
 
 import com.example.api_rps.Player.PlayerContainer;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import static org.hibernate.Hibernate.map;
 @AllArgsConstructor
 
 public class GameController {
+
 
     GameService gameService;
 
@@ -71,7 +73,8 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 
     @PostMapping("/games/move/{sign}")
     public GameContainer makeMove(@PathVariable("sign") String sign,
-                               @RequestHeader(value = "token") UUID playerId) throws GameNotFoundExeption{
+                               @RequestHeader(value = "token") UUID playerId)
+                                   throws GameNotFoundExeption{
 
         return gameService.Move(sign, playerId)
                 .map(this::GametoDTO)

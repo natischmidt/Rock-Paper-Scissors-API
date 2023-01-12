@@ -63,22 +63,18 @@ public class GameService {
     public Optional<GameEntity> Move(String sign, UUID playerid) throws GameNotFoundExeption {
 
         GameEntity gameEntity;
-        GameContainer gameContainer = null;
 
-        if (gameRepo.existsById(gameContainer.uuid())) {
-            gameEntity = gameRepo.findById(gameContainer.uuid()).get();
-            if (gameEntity.playerOne.getPlayerid().equals(playerid)) {
-                switch (sign) {
-                    case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
-                    case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
-                    case "scissors" -> gameEntity.setPlayerMove(Move.SCISSOR);
-                }}
-            } else {
-                throw new GameNotFoundExeption("Cant make this move");
-            }
-
-            gameRepo.save(gameEntity);
-            return Optional.of(gameEntity);
+//                switch (sign) {
+//                    case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
+//                    case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
+//                    case "scissors" -> gameEntity.setPlayerMove(Move.SCISSOR);
+//                }}
+//
+//                throw new GameNotFoundExeption("Cant make this move");
+//            }
+//
+//            gameRepo.save(gameEntity);
+//            return Optional.of(gameEntity);
     }
 
 
