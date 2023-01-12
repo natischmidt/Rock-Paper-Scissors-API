@@ -46,7 +46,14 @@ public class GameController {
     }
 
 // Game info
+    //calling  info  from gameserivce
+    //tested and working
 @GetMapping("/games/{gameId}")
+public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFoundExeption {
+    return gameService.Info(gameId)
+            .map(this::GametoDTO)
+            .orElse(null);
+}
 
 
 
