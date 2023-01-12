@@ -20,24 +20,29 @@ public class GameService {
 
     public void setuserMove(String sign,GameContainer gameContainer, UUID playerid) {
         Optional<GameEntity> gameEntity = gameRepo.findById(playerid);
-        if (gameEntity.isPresent()) {
-            switch (sign) {
-                case "rock" -> {
-                    gameEntity.get().setPlayerMove(Move.ROCK);
-                    gameEntity.get().setPlayerMove(gameContainer.playerMove());
-                    gameRepo.save(gameEntity.get());
-                }
-                case "paper" -> {
-                    gameEntity.get().setPlayerMove(Move.PAPER);
-                    gameEntity.get().setPlayerMove(gameContainer.playerMove());
-                    gameRepo.save(gameEntity.get());
-                }
-                case "scissors" -> {
-                    gameEntity.get().setPlayerMove(Move.SCISSOR);
-                    gameEntity.get().setPlayerMove(gameContainer.playerMove());
-                    gameRepo.save(gameEntity.get());
-                }
+        if (gameRepo.existsById(gameContainer.uuid())) {
+            gameEntity = Optional.of(gameRepo.findById(gameContainer.uuid()).get());
+            (gameEntity.
+                    .playerOne.getPlayerid().equals(playerid))
+                    get().getPlayeruuid().equals(playerid)) {
+                switch (sign) {
+                    case "rock" -> {
+                        gameEntity.get().setPlayerMove(Move.ROCK);
+                        gameEntity.get().setPlayerMove(gameContainer.playerMove());
+                        gameRepo.save(gameEntity.get());
+                    }
+                    case "paper" -> {
+                        gameEntity.get().setPlayerMove(Move.PAPER);
+                        gameEntity.get().setPlayerMove(gameContainer.playerMove());
+                        gameRepo.save(gameEntity.get());
+                    }
+                    case "scissors" -> {
+                        gameEntity.get().setPlayerMove(Move.SCISSOR);
+                        gameEntity.get().setPlayerMove(gameContainer.playerMove());
+                        gameRepo.save(gameEntity.get());
+                    }
 
+                }
             }
         }
     }
