@@ -72,12 +72,14 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 
 //i want to just put the info via pathvariabel
 
-//    @PostMapping("/games/move/{sign}")
-//
-//
-//
-//
-//}
+    @PostMapping("/games/move/{sign}")
+    public void addPlayerMove( @PathVariable("sign")
+                                   @RequestBody PlayerContainer playerContainer,
+                                @RequestHeader(value = "token") UUID playerId)
+    {  playerService.setuserMove(playerContainer, playerId);
+
+
+}
 
     private GameContainer GametoDTO(GameEntity gameEntity) {
         return new GameContainer(
