@@ -20,14 +20,14 @@ public class GameService {
     public Optional<GameEntity> Start(UUID playerId) {
         GameEntity gameEntity = new GameEntity
                 (
-                UUID.randomUUID(),
-                playerRepo.findById(playerId).get(),
-                null,
-                OPEN,
-                null,
-                null,
-                null
-        );
+                        UUID.randomUUID(),
+                        playerRepo.findById(playerId).get(),
+                        null,
+                        OPEN,
+                        null,
+                        null,
+                        null
+                );
 
 
         //Saving gameentity to the repo
@@ -42,13 +42,17 @@ public class GameService {
         return gameRepo.findAll();
     }
 
-    public Optional <GameEntity> Info (UUID game_uuid) {
+    public Optional<GameEntity> Info(UUID game_uuid) throws GameNotFoundExeption{
         GameEntity gameEntity;
 
         if (gameRepo.existsById(game_uuid)) {
             gameEntity = gameRepo.findById(game_uuid).get();
+
+        } else {
+            throw new GameNotFoundExeption("Game doesnt exist");
         }
         return Optional.of(gameEntity);
+
         //error here wip
     }
 }
