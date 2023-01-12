@@ -56,33 +56,37 @@ public class GameService {
 
     }
 
-    public Optional<GameEntity> Sign (String sign,
-                                         UUID playerId,
-                                         GameContainer gameContainer) throws GameNotFoundExeption {
-        GameEntity gameEntity;
+public Optional<GameEntity> choseSign(String sign,
+                                     UUID playerId,
+                                    GameContainer gameContainer) throws GameNotFoundExeption{
+    GameEntity gameEntity;
 
-        if (gameRepo.existsById(gameContainer.uuid())) {
-            gameEntity = gameRepo.findById(gameContainer.uuid()).get();
-            if (gameEntity.playerOne.getP1Game().equals(playerId)) {
-                switch (sign) {
-                    case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
-                    case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
-                    case "scissors" -> gameEntity.setPlayerMove(Move.SCISSOR);
-                }
-                if (gameEntity.playerTwo.getP2Game().equals(playerId)) {
-                    switch (sign) {
-                        case "rock" -> gameEntity.setOpponentMove(Move.ROCK);
-                        case "paper" -> gameEntity.setOpponentMove(Move.PAPER);
-                        case "scissors" -> gameEntity.setOpponentMove(Move.SCISSOR);
-                    }
-                }
-            } else {
-                throw new GameNotFoundExeption("Game doessnt exist.");
+    if (gameRepo.existsById(gameContainer.uuid())) {
+        gameEntity = gameRepo.findById(gameContainer.uuid()).get();
+        if (gameEntity.playerOne.getPlayerid().equals(playerId)) {
+            switch (sign) {
+                case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
+                case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
+                case "scissors" -> gameEntity.setPlayerMove(Move.SCISSOR);
             }
-            gameRepo.save(gameEntity);
-            return Optional.of(gameEntity);
+        }
+        if (gameEntity.playerTwo.getPlayerid().equals(playerId)) {
+            switch (sign) {
+                case "rock" -> gameEntity.setOpponentMove(Move.ROCK);
+                case "paper" -> gameEntity.setOpponentMove(Move.PAPER);
+                case "scissors" -> gameEntity.setOpponentMove(Move.SCISSOR);
+            }
+        }
+    } else {
+        throw new GameNotFoundExeption("Game doesn exist");
+    }
 
 
+
+    gameRepo.save(gameEntity);
+
+    return Optional.of(gameEntity);
+}
 
     }
-}
+
