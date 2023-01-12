@@ -61,7 +61,7 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 @PostMapping("/games/move/{sign}")
 public GameContainer choosingSign(@PathVariable("sign") String sign,
                            @RequestHeader(value = "token") UUID playerid,
-                           @RequestParam GameContainer gameContainer) throws GameNotFoundExeption {
+                           @RequestBody GameContainer gameContainer) throws GameNotFoundExeption {
     return gameService.choseSign(sign, playerid, gameContainer)
             .map(this::GametoDTO)
             .orElse(null);
