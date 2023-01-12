@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class GameController {
 
     GameService gameService;
-    GameContainer gameContainer;
+
 
    // private static List<GameEntity> gameEntities = new ArrayList<>();
     //problem det att testa detta
