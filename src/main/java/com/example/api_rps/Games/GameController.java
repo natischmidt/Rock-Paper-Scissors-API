@@ -14,8 +14,9 @@ public class GameController {
     GameService gameService;
 
 
-   // private static List<GameEntity> gameEntities = new ArrayList<>();
     //Start Game
+// im using the gamecontainer to start a game with the token given som auth/token, starting a game
+    //with gameservice and mapping it to the DTO
     //tested and working
     @PostMapping("/games/start")
     public GameContainer startGame(@RequestHeader(value = "token") UUID playerId) {
@@ -25,8 +26,16 @@ public class GameController {
                 .orElse(null);
     }
 
+    //Join Game
+    @PostMapping("/join/{gameId}")
+
+
+
+
+
     // Game list
-    //here i list open games
+    //here i list games, using stream and filter to get only the ones with the gamestatus open
+    //tested,working
     @GetMapping("/games")
     public List<GameEntity> OpenGames() {
         return gameService.OpenGames()
@@ -36,6 +45,13 @@ public class GameController {
                 .collect(Collectors.toList());
     }
 
+// Game info
+@GetMapping("/games/{gameId}")
+
+
+
+    //Make move
+@PostMapping("/games/move/{sign}")
 
     private GameContainer GametoDTO(GameEntity gameEntity) {
         return new GameContainer(
