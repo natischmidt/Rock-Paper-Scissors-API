@@ -71,21 +71,7 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 
 @PostMapping("/games/move/{sign}")
 
-public void setMove( @PathVariable("sign") String sign,
-                     @RequestBody GameContainer gameContainer,
-                     @RequestHeader(value = "token") UUID playerid)  {
-    gameService.setuserMove(gameContainer, playerid);
-}
 
-
-
-//public GameContainer Move(@PathVariable("sign") String sign,
-//                           @RequestHeader(value = "token") UUID playerId,
-//                           @RequestBody GameContainer gameContainer) throws GameNotFoundExeption {
-//    return gameService.choseSign(sign, playerId, gameContainer)
-//            .map(this::GametoDTO)
-//            .orElse(null);
-//}
 
 
     private GameContainer GametoDTO(GameEntity gameEntity) {
