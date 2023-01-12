@@ -18,12 +18,13 @@ public class GameService {
     PlayerRepo playerRepo;
 
 
-    public Optional <GameEntity> setuserMove(String sign,GameContainer gameContainer, UUID playerid) throws GameNotFoundExeption {
+    public Optional <GameEntity> setuserMove(String sign, UUID playerid) throws GameNotFoundExeption {
 
         GameEntity gameEntity;
 
-        if (gameRepo.existsById(gameContainer.uuid())) {
-            gameEntity = gameRepo.findById(gameContainer.uuid()).get();
+        if (gameRepo.existsById(gameEntity.getUuid())){
+            gameEntity = gameRepo.findById(gameEntity.getUuid()).get();
+
             if (gameEntity.playerOne.getPlayerid().equals(playerid)) {
                 switch (sign) {
                     case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
