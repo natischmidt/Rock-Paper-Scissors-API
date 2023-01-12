@@ -33,6 +33,7 @@ public class PlayerService {
         if (playerEntity.isPresent()) {
             playerEntity.get().setUserName(playerContainer.name());
             playerRepo.save(playerEntity.get());
+           
     }
 }
 
