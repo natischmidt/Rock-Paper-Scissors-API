@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class GameController {
 
     GameService gameService;
+    GameContainer gameContainer;
 
    // private static List<GameEntity> gameEntities = new ArrayList<>();
     //problem det att testa detta
@@ -29,7 +30,7 @@ public class GameController {
     public List<GameEntity> OpenGames() {
         return gameService.OpenGames()
                 .stream()
-                .filter(games -> games.
+                .filter(games -> games.getGamestatus().
                         equals(GameStatus.OPEN))
                 .collect(Collectors.toList());
     }
