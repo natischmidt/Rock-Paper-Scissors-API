@@ -35,25 +35,6 @@ public class GameService {
         return Optional.of(gameEntity);
     }
 
-//    public Stream<GameEntity> all() {
-//        return gameRepo.all();
-//    }
-//
-//    public GameEntity get(UUID uuid) throws GameNotFoundExeption {
-//        return gameRepo.get(uuid)
-//                .orElseThrow(() -> new GameNotFoundExeption(uuid));
-//    }
-
-
-
-//    public GameEntity createGame(UUID uuid) {
-//        GameEntity gameEntity = new GameEntity(
-//                UUID.randomUUID()
-//
-////        );
-//        return gameRepo.save(gameEntity);
-//    }
-
     //return all open games
     public List<GameEntity> OpenGames() {
         return gameRepo.findAll();

@@ -17,7 +17,6 @@ public class PlayerController {
 
     private static List<GameEntity> players = new ArrayList<>();
 
-
     @GetMapping("auth/token")
     public UUID createPlayer(){
         return playerService.createPlayer().getPlayerid();
@@ -28,21 +27,6 @@ public class PlayerController {
                               @RequestHeader(value = "token") UUID playerId)  {
         playerService.setuserName(playerContainer, playerId);
     }
-
-
-//    public List<Player> all() {
-//        return playerService.all()
-//                .map(Token::toDTO)
-//                .collect(Collectors.toList());
-//    }
-
-//    @GetMapping
-
-//    private static Player toDTO(PlayerEntity playerEntity) {
-//        return new Player(
-//        );
-//    }
-
 
 
 }

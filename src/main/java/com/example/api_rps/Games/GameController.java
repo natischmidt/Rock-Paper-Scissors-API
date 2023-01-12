@@ -36,25 +36,6 @@ public class GameController {
     }
 
 
-
-
-//
-//    @GetMapping
-//    public List<Game> all() {
-//        return gameService.all()
-//                .map(GameController::toDTO)
-//                .collect(Collectors.toList());
-  //  }
-    //testing
-//    public List<Game> all() {
-//        return List.of(
-//                new Game(),
-//                new Game()
-//
-//        );
-   // }
-
-
     private GameContainer GametoDTO(GameEntity gameEntity) {
         return new GameContainer(
                 gameEntity.getUuid(),
@@ -65,43 +46,6 @@ public class GameController {
                 gameEntity.getGamestatus()
         );
     }
-
-//    @PostMapping("/games/start")
-//    public GameEntity Start(@RequestBody CreateGame createGame) {
-//        return toDTO(
-//                gameService.Start(
-//                        createGame.getUuid()));
-//
-//    }
-
-    //@PostMapping("/start")
-
-//wip
-
-//    @PostMapping("/games/start") // Create new game
-//    public String createGame(@RequestBody Map<UUID, String> body) {
-//        Game newGame = new Game();
-//        //error here wip
-//        UUID uuid = newGame.getUuid();
-//        String playerUsername = body.get("name");
-//
-//        if (playerUsername != null && !playerUsername.isEmpty()) {
-//            newGame.addPlayer(playerUsername);
-//            games.add(newGame);
-//            return
-//
-//        }
-//       return
-//    }
-
-    //    @PostMapping
-//    Game createGame(@RequestBody CreateGame createGame) {
-//        return new Game(
-//                createGame.getUUID(),
-//                createGame.getSessionName()
-//
-//        );
-
 
 
 
