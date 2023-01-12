@@ -1,5 +1,6 @@
 package com.example.api_rps.Games;
 
+import com.example.api_rps.Player.PlayerEntity;
 import com.example.api_rps.Player.PlayerRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,14 @@ public class GameService {
 
     GameRepo gameRepo;
     PlayerRepo playerRepo;
+
+    public void setMove(GameContainer gameContainer, UUID playerid) {
+        Optional<GameEntity> gameEntity = gameRepo.findById(playerid);
+        if (gameEntity.isPresent()) {
+            gameEntity.get().setMove(gameContainer.playerMove());
+            gameRepo.save(gameEntity.get());
+
+        }
 
     //When starting a game I set all of the variabels to NULL so they can be filled in later because right now all i want to do is create a new empty game, i put the gamestatus OPEN
     public Optional<GameEntity> Start(UUID playerId) {
@@ -75,11 +84,11 @@ public class GameService {
         return Optional.of(gameEntity);
     }
 
-//public Optional<GameEntity> choseSign(String sign,
+
+//public void setMove(String sign,
 //                                     UUID playerid,
 //                                    GameContainer gameContainer) throws GameNotFoundExeption{
 //    GameEntity gameEntity;
-//
 //    if
 //    (gameRepo.existsById(gameContainer.uuid())) {
 //        gameEntity = gameRepo.findById(gameContainer.uuid()).get();

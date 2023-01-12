@@ -1,5 +1,6 @@
 package com.example.api_rps.Games;
 
+import com.example.api_rps.Player.PlayerContainer;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -64,13 +65,18 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 }
 
 
-    @PostMapping("/games/{uuid}/move")
-    public String addPlayerMove(@PathVariable("uuid") UUID uuid, @RequestBody Map<String, String> body) {
-
-        String playerMove = body.get("move");
-
-    }
-
+@PostMapping("/games/{uuid}/move")
+public void setPlayerMove(@RequestBody GameContainer gameContainer,
+                          @RequestHeader(value = "token") UUID playerId)  {
+    GameService.setMove(gameContainer, playerId);
+}
+//public GameContainer Move(@PathVariable("sign") String sign,
+//                           @RequestHeader(value = "token") UUID playerId,
+//                           @RequestBody GameContainer gameContainer) throws GameNotFoundExeption {
+//    return gameService.choseSign(sign, playerId, gameContainer)
+//            .map(this::GametoDTO)
+//            .orElse(null);
+//}
 
 
     private GameContainer GametoDTO(GameEntity gameEntity) {
