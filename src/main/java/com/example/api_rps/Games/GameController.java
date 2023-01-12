@@ -16,6 +16,7 @@ public class GameController {
     GameService gameService;
 
    // private static List<GameEntity> gameEntities = new ArrayList<>();
+    //problem det att testa detta
     @PostMapping("/start")
     public GameContainer startGame(@RequestHeader(value = "token") UUID playerId) {
 
@@ -29,9 +30,12 @@ public class GameController {
         return gameService.OpenGames()
                 .stream()
                 .filter(games -> games.
-                        equals(GameStatus.OPEN))  // filter games on status OPEN
-                .collect(Collectors.toList());                          // collect them to a list
+                        equals(GameStatus.OPEN))
+                .collect(Collectors.toList());
     }
+
+
+
 
 //
 //    @GetMapping
