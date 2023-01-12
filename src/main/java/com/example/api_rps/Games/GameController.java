@@ -27,8 +27,15 @@ public class GameController {
     }
 
     //Join Game
-    @PostMapping("/join/{gameId}")
 
+    @PostMapping("/join/{gameId}")
+    public GameContainer joinGame(@RequestHeader(value = "token") UUID playerId,
+                               @PathVariable("gameId") UUID gameId) throws GameNotFoundExeption {
+
+        return gameService.Join(playerId, gameId)
+                .map(this::GametoDTO)
+                .orElse(null);
+    }
 
 
 
@@ -57,15 +64,16 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 
 
 
-    //Make move
-@PostMapping("/games/move/{sign}")
-public GameContainer choosingSign(@PathVariable("sign") String sign,
-                           @RequestHeader(value = "token") UUID playerid,
-                           @RequestBody GameContainer gameContainer) throws GameNotFoundExeption {
-    return gameService.choseSign(sign, playerid, gameContainer)
-            .map(this::GametoDTO)
-            .orElse(null);
-}
+//    //Make move
+//    //wip
+//@PostMapping("/games/move/{sign}")
+//public GameContainer choosingSign(@PathVariable("sign") String sign,
+//                           @RequestHeader(value = "token") UUID playerid,
+//                           @RequestBody GameContainer gameContainer) throws GameNotFoundExeption {
+//    return gameService.choseSign(sign, playerid, gameContainer)
+//            .map(this::GametoDTO)
+//            .orElse(null);
+//}
 
 
 
