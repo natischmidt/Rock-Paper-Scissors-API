@@ -45,8 +45,10 @@ public class GameService {
     public Optional <GameEntity> Info (UUID game_uuid) {
         GameEntity gameEntity;
 
-
-
+        if (gameRepo.existsById(game_uuid)) {
+            gameEntity = gameRepo.findById(game_uuid).get();
+        }
+        return Optional.of(gameEntity);
+        //error here wip
     }
-
 }
