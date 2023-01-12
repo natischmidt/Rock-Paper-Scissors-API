@@ -65,11 +65,14 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 }
 
 
-@PostMapping("/games/{uuid}/move")
-public void setPlayerMove(@RequestBody GameContainer gameContainer,
+@PostMapping("/games/move/{sign}")
+public void setPlayerMove(@PathVariable("sign") String sign,@RequestBody GameContainer gameContainer,
                           @RequestHeader(value = "token") UUID playerId)  {
-    GameService.setMove(gameContainer, playerId);
+    gameService.setuserMove(gameContainer, playerId);
 }
+
+
+
 //public GameContainer Move(@PathVariable("sign") String sign,
 //                           @RequestHeader(value = "token") UUID playerId,
 //                           @RequestBody GameContainer gameContainer) throws GameNotFoundExeption {

@@ -17,14 +17,15 @@ public class GameService {
     GameRepo gameRepo;
     PlayerRepo playerRepo;
 
-    public void setMove(GameContainer gameContainer, UUID playerid) {
+
+    public void setuserMove(GameContainer gameContainer, UUID playerid) {
         Optional<GameEntity> gameEntity = gameRepo.findById(playerid);
         if (gameEntity.isPresent()) {
-            gameEntity.get().setMove(gameContainer.playerMove());
+            gameEntity.get().setPlayerMove(gameContainer.playerMove());
             gameRepo.save(gameEntity.get());
 
         }
-
+    }
     //When starting a game I set all of the variabels to NULL so they can be filled in later because right now all i want to do is create a new empty game, i put the gamestatus OPEN
     public Optional<GameEntity> Start(UUID playerId) {
         GameEntity gameEntity = new GameEntity

@@ -23,9 +23,9 @@ public class PlayerEntity {
 
     @Column(name = "username")
     private String userName;
-//
-//    @Enumerated(EnumType.STRING)
-//    private Move playerMove;
+
+    @Enumerated(EnumType.STRING)
+    private Move playerMove;
 
     @OneToOne(mappedBy = "playerOne")
     @JsonIgnore
