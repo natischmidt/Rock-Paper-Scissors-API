@@ -67,16 +67,16 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 }
 
 
-//i dont want to request the body just put the info via pathvariabel
+//i want to just put the info via pathvariabel
 
-@PostMapping("/games/move/{sign}")
-public GameContainer MakeMove (@PathVariable ("sign") UUID playerId)
-{
-    return gameService.move(playerId)
-            .map(this::GametoDTO)
-            .orElse(null);
+    @PostMapping("/games/move/{sign}")
+    public GameContainer makeMove(@PathVariable("sign") String sign,
+                               @RequestHeader(value = "token") UUID playerId) throws GameNotFoundExeption{
 
-}
+        return gameService.Move(sign, playerId)
+                .map(this::GametoDTO)
+                .orElse(null);
+    }
 
 
 
