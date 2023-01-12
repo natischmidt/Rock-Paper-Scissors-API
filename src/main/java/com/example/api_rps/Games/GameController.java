@@ -74,7 +74,7 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 
     @PostMapping("/games/move/{sign}")
     public void addPlayerMove( @PathVariable("sign")
-                                   @RequestBody PlayerContainer playerContainer,
+                               @RequestBody PlayerContainer playerContainer,
                                 @RequestHeader(value = "token") UUID playerId)
     {  playerService.setuserMove(playerContainer, playerId);
 
