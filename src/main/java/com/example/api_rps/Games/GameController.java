@@ -3,6 +3,7 @@ package com.example.api_rps.Games;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -63,7 +64,12 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 }
 
 
+    @PostMapping("/games/{uuid}/move")
+    public String addPlayerMove(@PathVariable("uuid") UUID uuid, @RequestBody Map<String, String> body) {
 
+        String playerMove = body.get("move");
+
+    }
 //    //Make move
 //    //wip
 //@PostMapping("/games/move/{sign}")
