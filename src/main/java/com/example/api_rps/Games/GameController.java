@@ -70,7 +70,13 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 //i dont want to request the body just put the info via pathvariabel
 
 @PostMapping("/games/move/{sign}")
+public GameContainer MakeMove (@PathVariable ("sign") UUID playerId)
+{
+    return gameService.move(playerId)
+            .map(this::GametoDTO)
+            .orElse(null);
 
+}
 
 
 
