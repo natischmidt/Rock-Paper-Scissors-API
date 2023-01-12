@@ -3,6 +3,7 @@ package com.example.api_rps.Games;
 import com.example.api_rps.Player.PlayerEntity;
 import com.example.api_rps.Player.PlayerRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import static com.example.api_rps.Games.GameStatus.*;
@@ -16,6 +17,16 @@ public class GameService {
 
     GameRepo gameRepo;
     PlayerRepo playerRepo;
+
+    public void setuserMove(GameContainer gameContainer, UUID playerid) {
+        Optional<GameEntity> gameEntity = gameRepo.findById(playerid);
+
+        if (gameEntity.isPresent()) {
+            gameEntity.get().setPlayerMove(gameContainer.playerMove());
+            gameRepo.save(gameEntity.get());
+        }
+
+    }
 
     //When starting a game I set all of the variabels to NULL so they can be filled in later because right now all i want to do is create a new empty game, i put the gamestatus OPEN
     public Optional<GameEntity> Start(UUID playerId) {
