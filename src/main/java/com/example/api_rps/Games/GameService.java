@@ -2,6 +2,7 @@ package com.example.api_rps.Games;
 
 import com.example.api_rps.Player.PlayerEntity;
 import com.example.api_rps.Player.PlayerRepo;
+import com.example.api_rps.Player.PlayerService;
 import lombok.AllArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -18,7 +19,7 @@ public class GameService {
 
     GameRepo gameRepo;
     PlayerRepo playerRepo;
-
+    PlayerService playerService;
 
     //When starting a game I set all of the variabels to NULL so they can be filled in later because right now all i want to do is create a new empty game, i put the gamestatus OPEN
     public Optional<GameEntity> Start(UUID playerId) {
@@ -60,23 +61,22 @@ public class GameService {
 
     }
 
-    public Optional<GameEntity> Move(String sign, UUID playerid) throws GameNotFoundExeption {
-
-        GameEntity gameEntity;
-
-//                switch (sign) {
-//                    case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
-//                    case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
-//                    case "scissors" -> gameEntity.setPlayerMove(Move.SCISSOR);
-//                }}
+//    public Optional<GameEntity> Move(String sign, UUID playerid) throws GameNotFoundExeption {
 //
-//                throw new GameNotFoundExeption("Cant make this move");
-//            }
+//        GameEntity gameEntity;
 //
-//            gameRepo.save(gameEntity);
-//            return Optional.of(gameEntity);
-    }
-
+////                switch (sign) {
+////                    case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
+////                    case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
+////                    case "scissors" -> gameEntity.setPlayerMove(Move.SCISSOR);
+////                }}
+////
+////                throw new GameNotFoundExeption("Cant make this move");
+////            }
+////
+////            gameRepo.save(gameEntity);
+////            return Optional.of(gameEntity);
+//    }
 
 
     public Optional<GameEntity> Join(UUID playerid, UUID game_uuid) throws GameNotFoundExeption {

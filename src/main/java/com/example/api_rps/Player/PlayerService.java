@@ -15,6 +15,7 @@ public class PlayerService {
 
     PlayerRepo playerRepo;
 
+
     public PlayerEntity createPlayer() {
         PlayerEntity playerEntity = new PlayerEntity(
                 UUID.randomUUID()
@@ -31,7 +32,17 @@ public class PlayerService {
             playerRepo.save(playerEntity.get());
            
     }
-}
-
 
 }
+
+    public void setuserMove(PlayerContainer playerContainer, UUID playerid ) {
+        Optional<PlayerEntity> playerEntity = playerRepo.findById(playerid);
+
+        if (playerEntity.isPresent()) {
+            playerEntity.get().setPlayerMove(playerContainer.playeroneMove());
+            playerRepo.save(playerEntity.get());
+
+        }
+
+
+}}

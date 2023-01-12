@@ -1,6 +1,7 @@
 package com.example.api_rps.Games;
 
 import com.example.api_rps.Player.PlayerContainer;
+import com.example.api_rps.Player.PlayerService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class GameController {
 
 
     GameService gameService;
-
+    PlayerService playerService;
 
     //Start Game
 // im using the gamecontainer to start a game with the token given som auth/token, starting a game
@@ -71,17 +72,12 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 
 //i want to just put the info via pathvariabel
 
-    @PostMapping("/games/move/{sign}")
-    public GameContainer makeMove(@PathVariable("sign") String sign,
-                               @RequestHeader(value = "token") UUID playerId)
-                                   throws GameNotFoundExeption{
-
-        return gameService.Move(sign, playerId)
-                .map(this::GametoDTO)
-                .orElse(null);
-    }
-
-
+//    @PostMapping("/games/move/{sign}")
+//
+//
+//
+//
+//}
 
     private GameContainer GametoDTO(GameEntity gameEntity) {
         return new GameContainer(
