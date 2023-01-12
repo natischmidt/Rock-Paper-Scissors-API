@@ -3,6 +3,7 @@ package com.example.api_rps.Games;
 import com.example.api_rps.Player.PlayerEntity;
 import com.example.api_rps.Player.PlayerRepo;
 import lombok.AllArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
@@ -59,6 +60,30 @@ public class GameService {
 
     }
 
+    public Optional<GameEntity> Move(String sign, UUID playerid) throws GameNotFoundExeption {
+
+        GameEntity gameEntity;
+        GameContainer gameContainer;
+
+        if (gameRepo.existsById(gameContainer.uuid())) {
+            gameEntity = gameRepo.findById(gameContainer.uuid()).get();
+            if (gameEntity.playerOne.getPlayerid().equals(playerid)) {
+                switch (sign) {
+                    case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
+                    case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
+                    case "scissors" -> gameEntity.setPlayerMove(Move.SCISSOR);
+                }
+            } else {
+                throw new GameNotFoundExeption("Cant make this move");
+            }
+            return Optional.of(gameEntity);
+        }
+
+
+    }
+
+
+
     public Optional<GameEntity> Join(UUID playerid, UUID game_uuid) throws GameNotFoundExeption {
         GameEntity gameEntity;
 
@@ -77,6 +102,8 @@ public class GameService {
 
         return Optional.of(gameEntity);
     }
+
+
 
 
 //public void setMove(String sign,
