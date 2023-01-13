@@ -100,16 +100,15 @@ public class GameService {
     }
 
 
-    public Optional<GameEntity> setuserMove(String move, GameContainer gameContainer, UUID playerid) throws GameNotFoundExeption {
-        GameEntity gameEntity;
+    public Optional<GameEntity> setuserMove(String sign, GameContainer gameContainer, UUID playerid) throws GameNotFoundExeption {
 
-        //gameRepo.findById(playerid);
+        GameEntity gameEntity;
 
         //for player one
         if (gameRepo.existsById(gameContainer.uuid())) {
             gameEntity = gameRepo.findById(gameContainer.uuid()).get();
             if (gameEntity.playerOne.getPlayerid().equals(playerid)) {
-                switch (move) {
+                switch (sign) {
                     case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
                     case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
                     case "scissor" -> gameEntity.setPlayerMove(Move.SCISSOR);
@@ -117,7 +116,7 @@ public class GameService {
                 }
             }
             if (gameEntity.playerTwo.getPlayerid().equals(playerid)) {
-                switch (move) {
+                switch (sign) {
                     case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
                     case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
                     case "scissor" -> gameEntity.setPlayerMove(Move.SCISSOR);
