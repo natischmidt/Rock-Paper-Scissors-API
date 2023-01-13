@@ -29,6 +29,10 @@ import java.util.UUID;
         @JoinColumn(name = "Gamep1")
         PlayerEntity playerOne;
 
+        public void setPlayerMove(Move playerMove) {
+            this.playerMove = playerMove;
+        }
+
         @Column (name = "player_move")
         @Enumerated(EnumType.STRING)
         private Move playerMove;
