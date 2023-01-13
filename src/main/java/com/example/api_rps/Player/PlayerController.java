@@ -17,15 +17,17 @@ public class PlayerController {
 
     private static List<GameEntity> players = new ArrayList<>();
 
-    //Get token
-    //tested working
+    /*Get token
+    Here a Player is created via playerService and their playerid(uuid) is returned
+    */
     @GetMapping("auth/token")
     public UUID createPlayer(){
         return playerService.createPlayer().getPlayerid();
     }
 
-    //Set name
-    //tested working
+    /*Set name
+    A name is mapped to a player whose id is given as a token(via playerservice)
+    */
     @PostMapping("/user/name")
     public void setPlayerName(@RequestBody PlayerContainer playerContainer,
                               @RequestHeader(value = "token") UUID playerId)  {

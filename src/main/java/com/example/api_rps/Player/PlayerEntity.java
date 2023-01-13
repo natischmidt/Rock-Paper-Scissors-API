@@ -1,6 +1,5 @@
 package com.example.api_rps.Player;
 import com.example.api_rps.Games.GameEntity;
-import com.example.api_rps.Games.Move;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
