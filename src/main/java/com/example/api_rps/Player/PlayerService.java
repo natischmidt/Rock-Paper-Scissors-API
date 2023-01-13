@@ -30,7 +30,8 @@ public class PlayerService {
         if (playerEntity.isPresent()) {
             playerEntity.get().setUserName(playerContainer.name());
             playerRepo.save(playerEntity.get());
-           
+
+
     }
 
 }
@@ -38,9 +39,21 @@ public class PlayerService {
     public void setuserMove(PlayerContainer playerContainer, UUID playerid ) {
         Optional<PlayerEntity> playerEntity = playerRepo.findById(playerid);
 
-        if (playerEntity.isPresent()) {
+        String move;
+        if (playerEntity.isPresent())) {
             playerEntity.get().setPlayerMove(playerContainer.playeroneMove());
+            switch (move) {
+
+                case "rock" -> playerEntity.setPlayerMove(Move.ROCK);
+                case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
+               case "scissors" -> gameEntity.setPlayerMove(Move.SCISSOR);
+
+            }
+
             playerRepo.save(playerEntity.get());
+
+            if
+
 
         }
 
