@@ -52,40 +52,6 @@ public class GameService {
         return gameRepo.findAll();
     }
 
-    //return info for a given game via the game uuid
-    public Optional<GameEntity> Info(UUID game_uuid) throws GameNotFoundExeption {
-        GameEntity gameEntity;
-
-        if (gameRepo.existsById(game_uuid)) {
-            gameEntity = gameRepo.findById(game_uuid).get();
-
-        } else {
-            throw new GameNotFoundExeption("Game doesnt exist");
-        }
-        return Optional.of(gameEntity);
-
-    }
-
-    public Optional<GameEntity> Join(UUID playerid, UUID game_uuid) throws GameNotFoundExeption {
-        GameEntity gameEntity;
-
-        if (gameRepo.existsById(game_uuid)) {
-            gameEntity = gameRepo.findById(game_uuid).get();
-
-            gameEntity.setPlayerTwo(playerRepo.getReferenceById(playerid));
-            gameEntity.setGamestatus(ACTIVE);
-            //Now that another player has joined the status changes from open to active
-
-            gameRepo.save(gameEntity);
-        } else {
-            throw new GameNotFoundExeption("Game does not exist");
-        }
-
-        playerRepo.getReferenceById(playerid).setP2Game(gameEntity);
-
-        return Optional.of(gameEntity);
-    }
-
     public Optional<GameEntity> Results(UUID game_uuid, UUID playerid) throws GameNotFoundExeption {
         GameEntity gameEntity;
         // checking result of game for p1
@@ -122,6 +88,42 @@ public class GameService {
         gameRepo.save(gameEntity);
         return Optional.of(gameEntity);
     }
+
+
+    //return info for a given game via the game uuid
+    public Optional<GameEntity> Info(UUID game_uuid) throws GameNotFoundExeption {
+        GameEntity gameEntity;
+
+        if (gameRepo.existsById(game_uuid)) {
+            gameEntity = gameRepo.findById(game_uuid).get();
+
+        } else {
+            throw new GameNotFoundExeption("Game doesnt exist");
+        }
+        return Optional.of(gameEntity);
+
+    }
+
+    public Optional<GameEntity> Join(UUID playerid, UUID game_uuid) throws GameNotFoundExeption {
+        GameEntity gameEntity;
+
+        if (gameRepo.existsById(game_uuid)) {
+            gameEntity = gameRepo.findById(game_uuid).get();
+
+            gameEntity.setPlayerTwo(playerRepo.getReferenceById(playerid));
+            gameEntity.setGamestatus(ACTIVE);
+            //Now that another player has joined the status changes from open to active
+
+            gameRepo.save(gameEntity);
+        } else {
+            throw new GameNotFoundExeption("Game does not exist");
+        }
+
+        playerRepo.getReferenceById(playerid).setP2Game(gameEntity);
+
+        return Optional.of(gameEntity);
+    }
+
 
 
     public Optional<GameEntity> setuserMove(String sign, GameContainer gameContainer, UUID playerid) throws GameNotFoundExeption {
