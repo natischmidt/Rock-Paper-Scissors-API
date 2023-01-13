@@ -86,6 +86,43 @@ public class GameService {
         return Optional.of(gameEntity);
     }
 
+    public Optional<GameEntity> Results(UUID game_uuid, UUID playerid) throws GameNotFoundExeption {
+        GameEntity gameEntity;
+        // checking result of game for p1
+        if (gameRepo.existsById(game_uuid)) {
+            gameEntity = gameRepo.findById(game_uuid).get();
+            if (gameEntity.playerOne.getPlayerid().equals(playerid)) {
+                if (gameEntity.getPlayerMove().wins_over(gameEntity.getOpponentMove())) {
+                    gameEntity.setGamestatus(WIN);
+                } else if (gameEntity.getOpponentMove().wins_over(gameEntity.getPlayerMove())) {
+                    gameEntity.setGamestatus(LOSE);
+                } else {
+                    gameEntity.setGamestatus(DRAW);
+                }
+
+            }
+        }
+        // checking result of game for p2
+        if (gameRepo.existsById(game_uuid)) {
+            gameEntity = gameRepo.findById(game_uuid).get();
+            if (gameEntity.playerTwo.getPlayerid().equals(playerid)) {
+                if (gameEntity.getPlayerMove().wins_over(gameEntity.getOpponentMove())) {
+                    gameEntity.setGamestatus(WIN);
+                } else if (gameEntity.getOpponentMove().wins_over(gameEntity.getPlayerMove())) {
+                    gameEntity.setGamestatus(LOSE);
+                } else {
+                    gameEntity.setGamestatus(DRAW);
+                }
+
+            }
+        } else {
+            throw new GameNotFoundExeption("Game doesnt exist");
+        }
+        //saving
+        gameRepo.save(gameEntity);
+        return Optional.of(gameEntity);
+    }
+
 
     public Optional<GameEntity> setuserMove(String sign, GameContainer gameContainer, UUID playerid) throws GameNotFoundExeption {
         GameEntity gameEntity;
@@ -118,7 +155,12 @@ public class GameService {
                 gameRepo.save(gameEntity);
                 return Optional.of(gameEntity);
             }
+
+
+
         }
+
+
 
 
 

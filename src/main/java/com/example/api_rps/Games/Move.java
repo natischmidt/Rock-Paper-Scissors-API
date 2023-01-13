@@ -1,6 +1,5 @@
 package com.example.api_rps.Games;
 
-
 //an enum to determinate chosen move by the players
 public enum Move {
     ROCK {
