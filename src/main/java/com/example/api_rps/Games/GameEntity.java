@@ -25,6 +25,7 @@ import java.util.UUID;
         @Column(name = "game_uuid")
         private UUID uuid;
 
+        //create a foreign key linking this with the primary key from the player-entity.
         @OneToOne
         @JoinColumn(name = "Gamep1")
         PlayerEntity playerOne;
@@ -33,6 +34,7 @@ import java.util.UUID;
             this.playerMove = playerMove;
         }
 
+        //By setting the enum type to String, it will look cleaner when printing to the tables
         @Column (name = "player_move")
         @Enumerated(EnumType.STRING)
         private Move playerMove;
@@ -42,6 +44,7 @@ import java.util.UUID;
         private GameStatus gamestatus;
 
         private String opponentName;
+
 
         @OneToOne
         @JoinColumn(name = "Gamep2")
