@@ -1,16 +1,11 @@
 package com.example.api_rps.Games;
-
-import com.example.api_rps.Player.PlayerContainer;
 import com.example.api_rps.Player.PlayerService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static org.hibernate.Hibernate.map;
 
 @RestController
 @AllArgsConstructor
@@ -45,11 +40,8 @@ public class GameController {
                 .orElse(null);
     }
 
-
-
-
     /* Game list
-    //here i list games, using stream and filter to get only the ones with the gamestatus open
+    //Here I list games, using stream and filter to get only the ones with the gamestatus open
     //tested,working
     */
 
@@ -62,18 +54,16 @@ public class GameController {
                 .collect(Collectors.toList());
     }
 
-// Game info
-    //calling  info  from gameserivce
-    //tested and working
+
+    /*Game info
+    Calling all saved game info for a game via game uuid from Gameservice
+   */
 @GetMapping("/games/{gameId}")
 public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFoundExeption {
     return gameService.Info(gameId)
             .map(this::GametoDTO)
             .orElse(null);
 }
-
-
-//i want to just put the info via pathvariabel
 
 
     private GameContainer GametoDTO(GameEntity gameEntity) {
@@ -87,6 +77,10 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
         );
     }
 
+    /* Make Move
+    This request takes the Game move via the url (Pathvariabel), the game id in the request body, and the
+    player uuid as a token, to map a move rock paper, scissor to a specific game and player
+     */
     @PostMapping("/games/move/{sign}")
     public GameContainer addPlayerMove( @PathVariable( name = "sign") String sign,
                                         @RequestBody GameContainer gameContainer,
