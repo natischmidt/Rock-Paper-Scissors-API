@@ -21,21 +21,22 @@ public class GameController {
    I use my gameserive to invoke Start and map it to the DTO
     */
     @PostMapping("/games/start")
-    public GameContainer startGame(@RequestHeader(value = "token") UUID playerId) {
+    public GameContainer startGame(@RequestHeader(value = "token") UUID player_uuid) {
 
-        return gameService.Start(playerId)
+        return gameService.Start(player_uuid)
                 .map(this::GametoDTO)
                 .orElse(null);
     }
+
     /*
     //Join Game
     Similar as above, though now im joining an open game with a player uuid
      */
     @PostMapping("/join/{gameId}")
-    public GameContainer joinGame(@RequestHeader(value = "token") UUID playerId,
-                               @PathVariable("gameId") UUID gameId) throws GameNotFoundExeption {
+    public GameContainer joinGame(@RequestHeader(value = "token") UUID player_uuid,
+                                  @PathVariable("gameId") UUID game_uuid) throws GameNotFoundExeption {
 
-        return gameService.Join(playerId, gameId)
+        return gameService.Join(player_uuid, game_uuid)
                 .map(this::GametoDTO)
                 .orElse(null);
     }
@@ -58,12 +59,12 @@ public class GameController {
     /*Game info
     Calling all saved game info for a game via game uuid from Gameservice
    */
-@GetMapping("/games/{gameId}")
-public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFoundExeption {
-    return gameService.Info(gameId)
-            .map(this::GametoDTO)
-            .orElse(null);
-}
+    @GetMapping("/games/{gameId}")
+    public GameContainer Info(@PathVariable("gameId") UUID game_uuid) throws GameNotFoundExeption {
+        return gameService.Info(game_uuid)
+                .map(this::GametoDTO)
+                .orElse(null);
+    }
 
 
     private GameContainer GametoDTO(GameEntity gameEntity) {
@@ -82,17 +83,28 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
     player uuid as a token, to map a move rock paper, scissor to a specific game and player
      */
     @PostMapping("/games/move/{sign}")
-    public GameContainer addPlayerMove( @PathVariable( name = "sign") String sign,
-                                        @RequestBody GameContainer gameContainer,
-                                        @RequestHeader(value = "token") UUID playerId) throws GameNotFoundExeption
-    {
+    public GameContainer addPlayerMove(@PathVariable(name = "sign") String sign,
+                                       @RequestBody GameContainer gameContainer,
+                                       @RequestHeader(value = "token") UUID player_uuid) throws GameNotFoundExeption {
         return
-                gameService.setuserMove(sign,gameContainer, playerId)
+                gameService.setuserMove(sign, gameContainer, player_uuid)
                         .map(this::GametoDTO)
                         .orElse(null);
 
     }
 
 
+    //with the url/pathvariabel i set the gameid the token is the playerid
+    @GetMapping("/games/result/{gameId}")
+    public GameContainer showResult(@PathVariable("gameId") UUID gameId,
+                                     @RequestHeader(value = "token") UUID playerId) throws GameNotFoundExeption {
 
+
+        return gameService.Results(gameId, playerId)
+                .map(this::GametoDTO)
+                .orElse(null);
+
+
+    }
 }
+
