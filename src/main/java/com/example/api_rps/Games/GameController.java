@@ -21,10 +21,10 @@ public class GameController {
     GameService gameService;
     PlayerService playerService;
 
-    //Start Game
-// im using the gamecontainer to start a game with the token given som auth/token, starting a game
-    //with gameservice and mapping it to the DTO
-    //tested and working
+    /*Start Game
+   I'm using the game container to start a game with the token given in earlier step auth/token.
+   I use my gameserive to invoke Start and map it to the DTO
+    */
     @PostMapping("/games/start")
     public GameContainer startGame(@RequestHeader(value = "token") UUID playerId) {
 
@@ -32,9 +32,10 @@ public class GameController {
                 .map(this::GametoDTO)
                 .orElse(null);
     }
-
+    /*
     //Join Game
-//tested working, u can join games
+    Similar as above, though now im joining an open game with a player uuid
+     */
     @PostMapping("/join/{gameId}")
     public GameContainer joinGame(@RequestHeader(value = "token") UUID playerId,
                                @PathVariable("gameId") UUID gameId) throws GameNotFoundExeption {
@@ -47,9 +48,11 @@ public class GameController {
 
 
 
-    // Game list
+    /* Game list
     //here i list games, using stream and filter to get only the ones with the gamestatus open
     //tested,working
+    */
+
     @GetMapping("/games")
     public List<GameEntity> OpenGames() {
         return gameService.OpenGames()
