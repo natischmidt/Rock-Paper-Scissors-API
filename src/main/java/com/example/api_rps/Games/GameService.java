@@ -22,7 +22,11 @@ public class GameService {
     PlayerRepo playerRepo;
     PlayerService playerService;
 
-    //When starting a game I set all of the variabels to NULL so they can be filled in later because right now all i want to do is create a new empty game, i put the gamestatus OPEN
+
+    /*
+    When starting a game I set all the variables to NULL, so they can be filled in
+    later because right now all I want to do is create a new empty game aka  gamestatus OPEN
+     */
     public Optional<GameEntity> Start(UUID playerId) {
         GameEntity gameEntity = new GameEntity
                 (
@@ -36,7 +40,7 @@ public class GameService {
                 );
 
 
-        //Saving gameentity to the repo
+        //Saving game entity to the repo
         gameRepo.save(gameEntity);
         playerRepo.getReferenceById(playerId).setP1Game(gameEntity);
 
@@ -48,7 +52,7 @@ public class GameService {
         return gameRepo.findAll();
     }
 
-    //retrun info for a given game uuid
+    //return info for a given game via the game uuid
     public Optional<GameEntity> Info(UUID game_uuid) throws GameNotFoundExeption {
         GameEntity gameEntity;
 
@@ -62,24 +66,6 @@ public class GameService {
 
     }
 
-//    public Optional<GameEntity> Move(String sign, UUID playerid) throws GameNotFoundExeption {
-//
-//        GameEntity gameEntity;
-//
-////                switch (sign) {
-////                    case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
-////                    case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
-////                    case "scissors" -> gameEntity.setPlayerMove(Move.SCISSOR);
-////                }}
-////
-////                throw new GameNotFoundExeption("Cant make this move");
-////            }
-////
-////            gameRepo.save(gameEntity);
-////            return Optional.of(gameEntity);
-//    }
-
-
     public Optional<GameEntity> Join(UUID playerid, UUID game_uuid) throws GameNotFoundExeption {
         GameEntity gameEntity;
 
@@ -87,11 +73,12 @@ public class GameService {
             gameEntity = gameRepo.findById(game_uuid).get();
 
             gameEntity.setPlayerTwo(playerRepo.getReferenceById(playerid));
-            //change satus here to active wip
+            gameEntity.setGamestatus(ACTIVE);
+            //Now that another player has joined the status changes from open to active
 
             gameRepo.save(gameEntity);
         } else {
-            throw new GameNotFoundExeption("Game does not excist");
+            throw new GameNotFoundExeption("Game does not exist");
         }
 
         playerRepo.getReferenceById(playerid).setP2Game(gameEntity);
@@ -101,10 +88,10 @@ public class GameService {
 
 
     public Optional<GameEntity> setuserMove(String sign, GameContainer gameContainer, UUID playerid) throws GameNotFoundExeption {
-
         GameEntity gameEntity;
 
-        //for player one
+        // If a game with the given uuid exists, and the given player-id is found in the existing players,
+        // the sign is matched to the corresponding Move enum
         if (gameRepo.existsById(gameContainer.uuid())) {
             gameEntity = gameRepo.findById(gameContainer.uuid()).get();
             if (gameEntity.playerOne.getPlayerid().equals(playerid)) {
@@ -115,6 +102,7 @@ public class GameService {
 
                 }
             }
+            //Same for player2
             if (gameEntity.playerTwo.getPlayerid().equals(playerid)) {
                 switch (sign) {
                     case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
