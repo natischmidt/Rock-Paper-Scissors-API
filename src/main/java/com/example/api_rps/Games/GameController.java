@@ -72,10 +72,15 @@ public GameContainer Info(@PathVariable("gameId") UUID gameId) throws GameNotFou
 
 //i want to just put the info via pathvariabel
 
-    @PostMapping("/games/move")
-    public void addPlayerMove( @RequestBody GameContainer gameContainer,
-                                @RequestHeader(value = "token") UUID playerId)
-    {  gameService.setuserMove(gameContainer, playerId);
+    @PostMapping("/games/move/{sign}")
+    public GameContainer addPlayerMove( @PathVariable("sign") String sign,
+            @RequestBody GameContainer gameContainer,
+                                @RequestHeader(value = "token") UUID playerId) throws GameNotFoundExeption
+    {
+        return
+        gameService.setuserMove(sign,gameContainer, playerId)
+                .map(this::GametoDTO)
+                .orElse(null);
 
 
 }

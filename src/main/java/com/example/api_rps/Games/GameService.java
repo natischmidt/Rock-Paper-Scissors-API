@@ -105,6 +105,7 @@ public class GameService {
 
         //gameRepo.findById(playerid);
 
+        //for player one
         if (gameRepo.existsById(gameContainer.uuid())) {
             gameEntity = gameRepo.findById(gameContainer.uuid()).get();
             if (gameEntity.playerOne.getPlayerid().equals(playerid)) {
@@ -114,14 +115,23 @@ public class GameService {
                     case "scissor" -> gameEntity.setPlayerMove(Move.SCISSOR);
 
                 }
-            } else {
-                throw new GameNotFoundExeption("Move not possible");
+            }
+            if (gameEntity.playerTwo.getPlayerid().equals(playerid)) {
+                switch (move) {
+                    case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
+                    case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
+                    case "scissor" -> gameEntity.setPlayerMove(Move.SCISSOR);
+                }
+            }
 
+        } else {
+                throw new GameNotFoundExeption("Move not possible");
+            }
 
                 gameRepo.save(gameEntity);
                 return Optional.of(gameEntity);
             }
         }
-    }
+
 
 
