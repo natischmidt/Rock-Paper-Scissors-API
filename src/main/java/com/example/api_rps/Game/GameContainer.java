@@ -1,4 +1,4 @@
-package com.example.api_rps.Games;
+package com.example.api_rps.Game;
 import com.example.api_rps.Player.PlayerEntity;
 import java.util.UUID;
 

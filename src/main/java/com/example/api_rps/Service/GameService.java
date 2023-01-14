@@ -1,19 +1,18 @@
-package com.example.api_rps.Games;
+package com.example.api_rps.Service;
 
-import com.example.api_rps.Player.PlayerContainer;
-import com.example.api_rps.Player.PlayerEntity;
-import com.example.api_rps.Player.PlayerRepo;
-import com.example.api_rps.Player.PlayerService;
+import com.example.api_rps.GameNotFoundExeption;
+import com.example.api_rps.Game.*;
+import com.example.api_rps.Game.Move;
+import com.example.api_rps.Repository.GameRepo;
+import com.example.api_rps.Repository.PlayerRepo;
 import lombok.AllArgsConstructor;
-import org.hibernate.Hibernate;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
-import static com.example.api_rps.Games.GameStatus.*;
+import static com.example.api_rps.Game.GameStatus.*;
 import java.util.Optional;
 import java.util.List;
 import java.util.UUID;
-import static com.example.api_rps.Games.GameStatus.*;
+
 @Service
 @AllArgsConstructor
 public class GameService {
@@ -57,7 +56,7 @@ public class GameService {
         // checking result of game for p1
         if (gameRepo.existsById(game_uuid)) {
             gameEntity = gameRepo.findById(game_uuid).get();
-            if (gameEntity.playerOne.getPlayerid().equals(playerid)) {
+            if (gameEntity.getPlayerOne().getPlayerid().equals(playerid)) {
                 if (gameEntity.getPlayerMove().wins_over(gameEntity.getOpponentMove())) {
                     gameEntity.setGamestatus(WIN);
                 } else if (gameEntity.getOpponentMove().wins_over(gameEntity.getPlayerMove())) {
@@ -71,7 +70,7 @@ public class GameService {
         // checking result of game for p2
         if (gameRepo.existsById(game_uuid)) {
             gameEntity = gameRepo.findById(game_uuid).get();
-            if (gameEntity.playerTwo.getPlayerid().equals(playerid)) {
+            if (gameEntity.getPlayerTwo().getPlayerid().equals(playerid)) {
                 if (gameEntity.getPlayerMove().wins_over(gameEntity.getOpponentMove())) {
                     gameEntity.setGamestatus(WIN);
                 } else if (gameEntity.getOpponentMove().wins_over(gameEntity.getPlayerMove())) {
@@ -133,16 +132,17 @@ public class GameService {
         // the sign is matched to the corresponding Move enum
         if (gameRepo.existsById(gameContainer.uuid())) {
             gameEntity = gameRepo.findById(gameContainer.uuid()).get();
-            if (gameEntity.playerOne.getPlayerid().equals(playerid)) {
+            if (gameEntity.getPlayerOne().getPlayerid().equals(playerid)) {
                 switch (sign) {
                     case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
                     case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
                     case "scissor" -> gameEntity.setPlayerMove(Move.SCISSOR);
 
                 }
+
             }
             //Same for player2
-            if (gameEntity.playerTwo.getPlayerid().equals(playerid)) {
+            if (gameEntity.getPlayerTwo().getPlayerid().equals(playerid)) {
                 switch (sign) {
                     case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
                     case "paper" -> gameEntity.setPlayerMove(Move.PAPER);

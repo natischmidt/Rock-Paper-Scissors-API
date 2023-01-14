@@ -1,5 +1,8 @@
-package com.example.api_rps.Games;
-import com.example.api_rps.Player.PlayerService;
+package com.example.api_rps.Controller;
+import com.example.api_rps.GameNotFoundExeption;
+import com.example.api_rps.Game.*;
+import com.example.api_rps.Service.GameService;
+import com.example.api_rps.Service.PlayerService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

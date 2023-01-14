@@ -1,12 +1,8 @@
-package com.example.api_rps.Games;
+package com.example.api_rps.Repository;
+import com.example.api_rps.Game.GameEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Stream;
 
 
 public interface GameRepo extends JpaRepository<GameEntity, UUID> {

@@ -1,6 +1,8 @@
-package com.example.api_rps.Player;
+package com.example.api_rps.Controller;
 
-import com.example.api_rps.Games.GameEntity;
+import com.example.api_rps.Game.GameEntity;
+import com.example.api_rps.Player.PlayerContainer;
+import com.example.api_rps.Service.PlayerService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

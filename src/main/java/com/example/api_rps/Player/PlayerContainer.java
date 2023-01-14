@@ -1,7 +1,7 @@
 package com.example.api_rps.Player;
 
-import com.example.api_rps.Games.GameEntity;
-import com.example.api_rps.Games.Move;
+import com.example.api_rps.Game.GameEntity;
+import com.example.api_rps.Game.Move;
 
 public record PlayerContainer
     //Saving info about the player(s)

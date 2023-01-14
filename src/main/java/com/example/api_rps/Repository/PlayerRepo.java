@@ -1,5 +1,6 @@
-package com.example.api_rps.Player;
+package com.example.api_rps.Repository;
 
+import com.example.api_rps.Player.PlayerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.example.api_rps.Games;
+package com.example.api_rps.Game;
 import com.example.api_rps.Player.PlayerEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Optional;
 import java.util.UUID;
 
 //firstly building the class with properties
