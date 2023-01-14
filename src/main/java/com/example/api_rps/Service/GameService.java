@@ -26,11 +26,11 @@ public class GameService {
     When starting a game I set all the variables to NULL, so they can be filled in
     later because right now all I want to do is create a new empty game aka  gamestatus OPEN
      */
-    public Optional<GameEntity> Start(UUID playerId) {
+    public Optional<GameEntity> Start(UUID playerid) {
         GameEntity gameEntity = new GameEntity
                 (
                         UUID.randomUUID(),
-                        playerRepo.findById(playerId).get(),
+                        playerRepo.findById(playerid).get(),
                         null,
                         OPEN,
                         null,
@@ -41,7 +41,7 @@ public class GameService {
 
         //Saving game entity to the repo
         gameRepo.save(gameEntity);
-        playerRepo.getReferenceById(playerId).setP1Game(gameEntity);
+        playerRepo.getReferenceById(playerid).setP1Game(gameEntity);
 
         return Optional.of(gameEntity);
     }
@@ -51,11 +51,11 @@ public class GameService {
         return gameRepo.findAll();
     }
 
-    public Optional<GameEntity> Results(UUID game_uuid, UUID playerid) throws GameNotFoundExeption {
+    public Optional<GameEntity> Results(UUID gameid, UUID playerid) throws GameNotFoundExeption {
         GameEntity gameEntity;
         // checking result of game for p1
-        if (gameRepo.existsById(game_uuid)) {
-            gameEntity = gameRepo.findById(game_uuid).get();
+        if (gameRepo.existsById(gameid)) {
+            gameEntity = gameRepo.findById(gameid).get();
             if (gameEntity.getPlayerOne().getPlayerid().equals(playerid)) {
                 if (gameEntity.getPlayerMove().wins_over(gameEntity.getOpponentMove())) {
                     gameEntity.setGamestatus(WIN);
@@ -68,8 +68,8 @@ public class GameService {
             }
         }
         // checking result of game for p2
-        if (gameRepo.existsById(game_uuid)) {
-            gameEntity = gameRepo.findById(game_uuid).get();
+        if (gameRepo.existsById(gameid)) {
+            gameEntity = gameRepo.findById(gameid).get();
             if (gameEntity.getPlayerTwo().getPlayerid().equals(playerid)) {
                 if (gameEntity.getPlayerMove().wins_over(gameEntity.getOpponentMove())) {
                     gameEntity.setGamestatus(WIN);
@@ -90,11 +90,11 @@ public class GameService {
 
 
     //return info for a given game via the game uuid
-    public Optional<GameEntity> Info(UUID game_uuid) throws GameNotFoundExeption {
+    public Optional<GameEntity> Info(UUID gameid) throws GameNotFoundExeption {
         GameEntity gameEntity;
 
-        if (gameRepo.existsById(game_uuid)) {
-            gameEntity = gameRepo.findById(game_uuid).get();
+        if (gameRepo.existsById(gameid)) {
+            gameEntity = gameRepo.findById(gameid).get();
 
         } else {
             throw new GameNotFoundExeption("Game doesnt exist");
@@ -103,11 +103,11 @@ public class GameService {
 
     }
 
-    public Optional<GameEntity> Join(UUID playerid, UUID game_uuid) throws GameNotFoundExeption {
+    public Optional<GameEntity> Join(UUID playerid, UUID gameid) throws GameNotFoundExeption {
         GameEntity gameEntity;
 
-        if (gameRepo.existsById(game_uuid)) {
-            gameEntity = gameRepo.findById(game_uuid).get();
+        if (gameRepo.existsById(gameid)) {
+            gameEntity = gameRepo.findById(gameid).get();
 
             gameEntity.setPlayerTwo(playerRepo.getReferenceById(playerid));
             gameEntity.setGamestatus(ACTIVE);
@@ -154,13 +154,21 @@ public class GameService {
                 throw new GameNotFoundExeption("Move not possible");
             }
 
+        if (gameEntity.getOpponentMove() != null && gameEntity.getPlayerMove() != null) {
+           GameStatus evaluatedMove = MoveHandler.handelMoves(gameEntity.getPlayerMove(), gameEntity.getOpponentMove());
+            gameEntity.setGameStatus(evaluatedMove);
+        }
                 gameRepo.save(gameEntity);
                 return Optional.of(gameEntity);
             }
 
 
 
-        }
+
+    }
+
+
+
 
 
 

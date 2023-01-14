@@ -21,7 +21,7 @@ import java.util.UUID;
     public class GameEntity {
 
         @Id
-        @Column(name = "game_uuid")
+        @Column(name = "gameid")
         private UUID uuid;
 
         //create a foreign key linking this with the primary key from the player-entity.
@@ -37,6 +37,11 @@ import java.util.UUID;
         @Column (name = "player_move")
         @Enumerated(EnumType.STRING)
         private Move playerMove;
+
+        public GameStatus getGamestatus() {
+            return gamestatus;
+        }
+
 
         @Column (name = "game_status")
         @Enumerated(EnumType.STRING)
@@ -54,5 +59,7 @@ import java.util.UUID;
         private Move opponentMove;
 
 
-
+        public void setGameStatus(GameStatus evaluatedMove) {
+            this.gamestatus = gamestatus;
+        }
     }
