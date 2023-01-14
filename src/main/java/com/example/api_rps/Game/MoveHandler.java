@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MoveHandler {
 
-public GameStatus handelMoves(Move playerOne,Move playerTwo) {
+public GameStatus handlesMoves(Move playerOne,Move playerTwo) {
 
     GameStatus evaluatedMove;
 

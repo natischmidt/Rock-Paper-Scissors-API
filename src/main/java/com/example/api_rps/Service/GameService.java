@@ -20,6 +20,7 @@ public class GameService {
     GameRepo gameRepo;
     PlayerRepo playerRepo;
     PlayerService playerService;
+    MoveHandler moveHandler;
 
 
     /*
@@ -155,8 +156,8 @@ public class GameService {
             }
 
         if (gameEntity.getOpponentMove() != null && gameEntity.getPlayerMove() != null) {
-           GameStatus evaluatedMove = MoveHandler.handelMoves(gameEntity.getPlayerMove(), gameEntity.getOpponentMove());
-            gameEntity.setGameStatus(evaluatedMove);
+           GameStatus evaluatedMove = moveHandler.handlesMoves(gameEntity.getPlayerMove(), gameEntity.getOpponentMove());
+            gameEntity.setGamestatus(evaluatedMove);
         }
                 gameRepo.save(gameEntity);
                 return Optional.of(gameEntity);

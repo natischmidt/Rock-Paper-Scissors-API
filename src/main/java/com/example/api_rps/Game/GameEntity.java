@@ -29,8 +29,13 @@ import java.util.UUID;
         @JoinColumn(name = "Gamep1")
         PlayerEntity playerOne;
 
-        public void setPlayerMove(Move playerMove) {
+        public void setPlayerOneMove(Move playerMove) {
+
             this.playerMove = playerMove;
+        }
+
+        public void setPlayerTwoMove(Move playerMove){
+            this.opponentMove = playerMove;
         }
 
         //By setting the enum type to String, it will look cleaner when printing to the tables
@@ -38,17 +43,12 @@ import java.util.UUID;
         @Enumerated(EnumType.STRING)
         private Move playerMove;
 
-        public GameStatus getGamestatus() {
-            return gamestatus;
-        }
-
 
         @Column (name = "game_status")
         @Enumerated(EnumType.STRING)
         private GameStatus gamestatus;
 
         private String opponentName;
-
 
         @OneToOne
         @JoinColumn(name = "Gamep2")
@@ -58,8 +58,4 @@ import java.util.UUID;
         @Enumerated(EnumType.STRING)
         private Move opponentMove;
 
-
-        public void setGameStatus(GameStatus evaluatedMove) {
-            this.gamestatus = gamestatus;
-        }
     }
