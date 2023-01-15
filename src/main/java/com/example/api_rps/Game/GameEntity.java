@@ -22,6 +22,7 @@ import java.util.UUID;
 
         @Id
         @Column(name = "gameid")
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private UUID uuid;
 
         //create a foreign key linking this with the primary key from the player-entity.
@@ -29,8 +30,6 @@ import java.util.UUID;
         @JoinColumn(name = "Gamep1")
         PlayerEntity playerOne;
 
-        public GameEntity(UUID uuid, PlayerEntity playerOne, String username, GameStatus open, Object gamestatus, Object playerTwo, Object opponentMove) {
-        }
 
         public void setPlayerOneMove(Move playerMove) {
             this.playerMove = playerMove;
@@ -49,13 +48,10 @@ import java.util.UUID;
         }
 
 
-
-
         //By setting the enum type to String, it will look cleaner when printing to the tables
         @Column (name = "player_move")
         @Enumerated(EnumType.STRING)
         private Move playerMove;
-
 
         @Column (name = "game_status")
         @Enumerated(EnumType.STRING)
