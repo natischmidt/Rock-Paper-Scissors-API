@@ -107,14 +107,17 @@ public class GameService {
     public Optional<GameEntity> Join(UUID playerid, UUID gameid) throws GameNotFoundExeption {
         GameEntity gameEntity;
 
-        if (gameRepo.existsById(gameid)) {
+
+        //If the game exists
+        if (gameRepo.existsById(gameid))  {
             gameEntity = gameRepo.findById(gameid).get();
-
-            gameEntity.setPlayerTwo(playerRepo.getReferenceById(playerid));
-            gameEntity.setGamestatus(ACTIVE);
-            //Now that another player has joined the status changes from open to active
-
-            gameRepo.save(gameEntity);
+            //and is open, then you can join
+            if(gameEntity.getGamestatus() == GameStatus.OPEN) {
+                gameEntity.setPlayerTwo(playerRepo.getReferenceById(playerid));
+                gameEntity.setGamestatus(ACTIVE);
+                //Now that another player has joined the status changes from open to active
+            }
+               gameRepo.save(gameEntity);
         } else {
             throw new GameNotFoundExeption("Game does not exist");
         }
