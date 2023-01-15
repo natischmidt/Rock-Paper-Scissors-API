@@ -7,6 +7,7 @@ public enum GameStatus {
     ACTIVE,
     WIN,
     LOSE,
-    DRAW
+    DRAW;
+
 
 }

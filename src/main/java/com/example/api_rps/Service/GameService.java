@@ -33,9 +33,9 @@ public class GameService {
                         UUID.randomUUID(),
                         playerRepo.findById(playerid).get(),
                         null,
-                        OPEN,
+                       OPEN,
                         null,
-                        null
+                       null
 
                 );
 
