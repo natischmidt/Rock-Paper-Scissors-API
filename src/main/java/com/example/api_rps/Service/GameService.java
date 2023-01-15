@@ -136,7 +136,8 @@ public class GameService {
         // the sign is matched to the corresponding Move enum
         if (gameRepo.existsById(gameContainer.uuid())) {
             gameEntity = gameRepo.findById(gameContainer.uuid()).get();
-            if (gameEntity.getPlayerOne().getPlayerid().equals(playerid)) {
+            //players are not able to set a move if one already exists
+            if (gameEntity.getPlayerOne().getPlayerid().equals(playerid) && gameEntity.getPlayerOneMove() == null) {
                 switch (sign) {
                     case "rock" -> gameEntity.setPlayerOneMove(Move.ROCK);
                     case "paper" -> gameEntity.setPlayerOneMove(Move.PAPER);
@@ -146,7 +147,7 @@ public class GameService {
 
             }
             //Same for player2
-            if (gameEntity.getPlayerTwo().getPlayerid().equals(playerid)) {
+            if (gameEntity.getPlayerTwo().getPlayerid().equals(playerid) && gameEntity.getPlayerTwoMove() == null) {
                 switch (sign) {
                     case "rock" -> gameEntity.setPlayerTwoMove(Move.ROCK);
                     case "paper" -> gameEntity.setPlayerTwoMove(Move.PAPER);
