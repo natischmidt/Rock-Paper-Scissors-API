@@ -34,9 +34,12 @@ public class PlayerService {
     public void setuserName(PlayerContainer playerContainer, UUID playerid ) {
         Optional<PlayerEntity> playerEntity = playerRepo.findById(playerid);
 
+
         if (playerEntity.isPresent()) {
             playerEntity.get().setUserName(playerContainer.name());
             playerRepo.save(playerEntity.get());
+
+
 
 
     }
