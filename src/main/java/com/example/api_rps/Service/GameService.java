@@ -131,7 +131,6 @@ public class GameService {
 
     public Optional<GameEntity> setuserMove(String sign, GameContainer gameContainer, UUID playerid) throws GameNotFoundExeption {
         GameEntity gameEntity;
-
         // If a game with the given uuid exists, and the given player-id is found in the existing players,
         // the sign is matched to the corresponding Move enum
         if (gameRepo.existsById(gameContainer.uuid())) {
@@ -144,7 +143,6 @@ public class GameService {
                     case "scissor" -> gameEntity.setPlayerOneMove(Move.SCISSOR);
 
                 }
-
             }
             //Same for player2
             if (gameEntity.getPlayerTwo().getPlayerid().equals(playerid) && gameEntity.getPlayerTwoMove() == null) {
