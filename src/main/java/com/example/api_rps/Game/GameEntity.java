@@ -30,12 +30,20 @@ import java.util.UUID;
         PlayerEntity playerOne;
 
         public void setPlayerOneMove(Move playerMove) {
-
             this.playerMove = playerMove;
         }
 
         public void setPlayerTwoMove(Move playerMove){
             this.opponentMove = playerMove;
+        }
+
+
+        public Move getPlayerOneMove() {
+            return playerMove;
+        }
+
+        public Move getPlayerTwoMove() {
+            return opponentMove;
         }
 
         //By setting the enum type to String, it will look cleaner when printing to the tables

@@ -135,9 +135,9 @@ public class GameService {
             gameEntity = gameRepo.findById(gameContainer.uuid()).get();
             if (gameEntity.getPlayerOne().getPlayerid().equals(playerid)) {
                 switch (sign) {
-                    case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
-                    case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
-                    case "scissor" -> gameEntity.setPlayerMove(Move.SCISSOR);
+                    case "rock" -> gameEntity.setPlayerOneMove(Move.ROCK);
+                    case "paper" -> gameEntity.setPlayerOneMove(Move.PAPER);
+                    case "scissor" -> gameEntity.setPlayerOneMove(Move.SCISSOR);
 
                 }
 
@@ -145,9 +145,9 @@ public class GameService {
             //Same for player2
             if (gameEntity.getPlayerTwo().getPlayerid().equals(playerid)) {
                 switch (sign) {
-                    case "rock" -> gameEntity.setPlayerMove(Move.ROCK);
-                    case "paper" -> gameEntity.setPlayerMove(Move.PAPER);
-                    case "scissor" -> gameEntity.setPlayerMove(Move.SCISSOR);
+                    case "rock" -> gameEntity.setPlayerTwoMove(Move.ROCK);
+                    case "paper" -> gameEntity.setPlayerTwoMove(Move.PAPER);
+                    case "scissor" -> gameEntity.setPlayerTwoMove(Move.SCISSOR);
                 }
             }
 
@@ -155,8 +155,8 @@ public class GameService {
                 throw new GameNotFoundExeption("Move not possible");
             }
 
-        if (gameEntity.getOpponentMove() != null && gameEntity.getPlayerMove() != null) {
-           GameStatus evaluatedMove = moveHandler.handlesMoves(gameEntity.getPlayerMove(), gameEntity.getOpponentMove());
+        if (gameEntity.getPlayerOneMove() != null && gameEntity.getPlayerTwoMove() != null) {
+           GameStatus evaluatedMove = moveHandler.handlesMoves(gameEntity.getPlayerOneMove(), gameEntity.getPlayerTwoMove());
             gameEntity.setGamestatus(evaluatedMove);
         }
                 gameRepo.save(gameEntity);
