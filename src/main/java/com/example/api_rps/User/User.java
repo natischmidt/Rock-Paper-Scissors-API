@@ -1,13 +1,11 @@
 package com.example.api_rps.User;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import org.springframework.security.core.UserDetails;
 
 @Data
 @Builder
@@ -15,10 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+
+public class User implements UserDetails{
 
         @Id
-        @GeneratedValue
+        @GeneratedValue (strategy = GenerationType.SEQUENCE)
         private Integer id;
         private String username;
         private String password;
