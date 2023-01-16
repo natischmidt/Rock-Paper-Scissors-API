@@ -1,4 +1,4 @@
-package com.example.api_rps.domain;
+package com.example.api_rps.model;
 
 
 import jakarta.persistence.Entity;
