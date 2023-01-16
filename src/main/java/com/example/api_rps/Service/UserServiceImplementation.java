@@ -23,27 +23,31 @@ public class UserServiceImplementation implements UserService{
 
     @Override
     public User saveUser(User user) {
-        return null;
+        return userRepo.save(user);
     }
 
 
     @Override
     public Role saveRole(Role role) {
-        return null;
+        return roleRepo.save(role);
     }
 
     @Override
     public User getUser(String username) {
-        return null;
+        return userRepo.findByUsername(username);
     }
 
     @Override
     public void assignRole(String username, String roleName) {
+     User user = userRepo.findByUsername(username);
+     Role role = roleRepo.findByName(roleName);
+     user.getRoles().add(role);
+     // using @transactional which 'autosaves' here
 
     }
 
     @Override
     public List<User> getUsers() {
-        return null;
+        return userRepo.findAll();
     }
 }
