@@ -16,6 +16,7 @@ import static jakarta.persistence.GenerationType.AUTO;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class User {
 
     @Id @GeneratedValue(strategy = AUTO)
