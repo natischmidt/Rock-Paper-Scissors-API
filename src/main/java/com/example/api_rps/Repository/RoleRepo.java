@@ -1,6 +1,4 @@
 package com.example.api_rps.Repository;
-
-
 import com.example.api_rps.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
