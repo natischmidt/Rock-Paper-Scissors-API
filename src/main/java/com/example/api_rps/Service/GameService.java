@@ -115,7 +115,7 @@ public class GameService {
             //and is open, then you can join
             if(gameEntity.getPlayer_gamestatus() == GameStatus.OPEN) {
                 gameEntity.setPlayerTwo(playerRepo.getReferenceById(playerid));
-                gameEntity.setOpponent_gamestatus(ACTIVE);
+                gameEntity.setPlayer_gamestatus(ACTIVE);
                 gameEntity.setOpponent_gamestatus(ACTIVE);
                 //Now that another player has joined the status changes from open to active
             }
@@ -161,13 +161,13 @@ public class GameService {
 
         if (gameEntity.getPlayerOneMove() != null && gameEntity.getPlayerTwoMove() != null) {
            GameStatus evaluatedMove = moveHandler.handlesMoves(gameEntity.getPlayerOneMove(),gameEntity.getPlayerTwoMove());
+
            if(gameEntity.getPlayerOne().getPlayerid().equals(playerid)){
                gameEntity.setPlayer_gamestatus(evaluatedMove);
            }
-
            if (gameEntity.getPlayerTwo().getPlayerid().equals(playerid)) {
                 gameEntity.setOpponent_gamestatus(evaluatedMove);
-            }
+           }
         }
                 gameRepo.save(gameEntity);
                 return Optional.of(gameEntity);
