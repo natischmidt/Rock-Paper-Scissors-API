@@ -27,8 +27,10 @@ public class User implements UserDetails{
         private String username;
         private String password;
 
+        //User is able to have one role
         @Enumerated(EnumType.STRING)
         private Role role;
+
 
         @Override
         public Collection<? extends GrantedAuthority> getAuthorities() {
