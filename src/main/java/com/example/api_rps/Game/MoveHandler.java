@@ -15,9 +15,11 @@ public GameStatus handlesMoves(Move playerOne,Move playerTwo) {
     }
 
     else if ( playerTwo.wins_over(playerOne)){
-        evaluatedMove = GameStatus.DRAW;
+        evaluatedMove = GameStatus.LOSE;
     }
 
 
     return evaluatedMove;
-}}
+}
+
+}
