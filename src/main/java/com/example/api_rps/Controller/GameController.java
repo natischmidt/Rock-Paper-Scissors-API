@@ -77,8 +77,8 @@ public class GameController {
                 gameEntity.getPlayerMove(),
                 gameEntity.getPlayerTwo(),
                 gameEntity.getOpponentMove(),
-                gameEntity.getPlayergameStatus(),
-                gameEntity.getOpponentgameStatus()
+                gameEntity.getGameStatus()
+
         );
     }
 

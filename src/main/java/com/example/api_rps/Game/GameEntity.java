@@ -42,13 +42,9 @@ import java.util.UUID;
         @Enumerated(EnumType.STRING)
         private Move opponentMove;
 
-        @Column(name = "player_game_status")
+        @Column(name = "game_status")
         @Enumerated(EnumType.STRING)
-        GameStatus playergameStatus;
-
-        @Column(name = "opponent_game_status")
-        @Enumerated(EnumType.STRING)
-        GameStatus opponentgameStatus;
+        GameStatus gameStatus;
 
         public void setPlayerOneMove(Move playerMove) {
             this.playerMove = playerMove;

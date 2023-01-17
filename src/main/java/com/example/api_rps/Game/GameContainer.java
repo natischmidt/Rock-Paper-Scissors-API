@@ -9,8 +9,7 @@ public record GameContainer(
     Move playerMove,
     PlayerEntity secondPlayer,
     Move opponentMove,
-    GameStatus p1gamestatus,
-        GameStatus p2gamestatus
+    GameStatus gamestatus
 )
 {
 
