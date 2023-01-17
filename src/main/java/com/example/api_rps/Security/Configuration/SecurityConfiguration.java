@@ -27,7 +27,7 @@ public class SecurityConfiguration {
              .disable()
              .authorizeHttpRequests()
              //These will be whitelisted
-             .requestMatchers("")
+             .requestMatchers("/auth")
              .permitAll()
              //any other request will be authenticated
              .anyRequest()
