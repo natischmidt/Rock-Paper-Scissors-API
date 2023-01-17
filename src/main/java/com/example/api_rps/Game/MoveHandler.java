@@ -14,10 +14,9 @@ public GameStatus handlesMoves(Move playerOne,Move playerTwo) {
         evaluatedMove = GameStatus.WIN;
     }
 
-    else if ( playerTwo.wins_over(playerOne)){
+    else if (playerTwo.wins_over(playerOne)){
         evaluatedMove = GameStatus.LOSE;
     }
-
 
     return evaluatedMove;
 }

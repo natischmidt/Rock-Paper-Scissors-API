@@ -34,9 +34,13 @@ import java.util.UUID;
         @Enumerated(EnumType.STRING)
         private Move playerMove;
 
-        @Column (name = "game_status")
+        @Column (name = "player_one_game_status")
         @Enumerated(EnumType.STRING)
-        private GameStatus gamestatus;
+        private GameStatus player_gamestatus;
+
+        @Column (name = "player_two_game_status")
+        @Enumerated(EnumType.STRING)
+        private GameStatus opponent_gamestatus;
 
         @OneToOne
         @JoinColumn(name = "Gamep2")

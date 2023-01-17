@@ -9,7 +9,10 @@ public record GameContainer(
     Move playerMove,
     PlayerEntity secondPlayer,
     Move opponentMove,
-    GameStatus gamestatus){
+    GameStatus p1gamestatus,
+         GameStatus p2gamestatus
+)
+{
 
 }
 
