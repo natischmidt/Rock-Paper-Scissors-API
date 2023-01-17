@@ -2,6 +2,7 @@ package com.example.api_rps.Controller;
 
 
 import com.example.api_rps.Security.Authenticstion.AuthenticationResponse;
+import com.example.api_rps.Security.Authenticstion.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
