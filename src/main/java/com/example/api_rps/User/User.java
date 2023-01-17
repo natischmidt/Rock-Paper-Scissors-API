@@ -1,4 +1,6 @@
 package com.example.api_rps.User;
+import com.example.api_rps.Player.PlayerEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,6 +33,9 @@ public class User implements UserDetails{
         @Enumerated(EnumType.STRING)
         private Role role;
 
+        @OneToOne
+        @JsonIgnore
+        private PlayerEntity playerEntity;
 
         @Override
         public Collection<? extends GrantedAuthority> getAuthorities() {
