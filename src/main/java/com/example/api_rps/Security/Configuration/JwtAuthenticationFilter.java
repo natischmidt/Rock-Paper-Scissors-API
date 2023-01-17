@@ -1,6 +1,5 @@
 package com.example.api_rps.Security.Configuration;
 
-
 import com.example.api_rps.Service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -34,7 +33,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String JwtToken;
         final String userName;
         //Adding a check
-        if (authenticationHeader == null && authenticationHeader.startsWith("Bearer ")) {
+        if (authenticationHeader == null ||!authenticationHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request,response);
             return;
         }
@@ -51,7 +50,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         userDetails,
                         null,
                         userDetails.getAuthorities()
-
                 );
                 authenticationToken.setDetails(
                         //Building the details out of the http request
@@ -61,6 +59,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
         }
+        //moving it along in the chain after these if statements
+        filterChain.doFilter(request,response);
 
     }
 }
