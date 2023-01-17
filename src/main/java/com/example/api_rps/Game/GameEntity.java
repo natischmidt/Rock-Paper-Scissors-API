@@ -34,14 +34,6 @@ import java.util.UUID;
         @Enumerated(EnumType.STRING)
         private Move playerMove;
 
-        @Column (name = "player_one_game_status")
-        @Enumerated(EnumType.STRING)
-        private GameStatus player_gamestatus;
-
-        @Column (name = "player_two_game_status")
-        @Enumerated(EnumType.STRING)
-        private GameStatus opponent_gamestatus;
-
         @OneToOne
         @JoinColumn(name = "Gamep2")
         PlayerEntity playerTwo;
@@ -49,6 +41,14 @@ import java.util.UUID;
         @Column (name = "opponent_move")
         @Enumerated(EnumType.STRING)
         private Move opponentMove;
+
+        @Column(name = "player_game_status")
+        @Enumerated(EnumType.STRING)
+        GameStatus playergameStatus;
+
+        @Column(name = "opponent_game_status")
+        @Enumerated(EnumType.STRING)
+        GameStatus opponentgameStatus;
 
         public void setPlayerOneMove(Move playerMove) {
             this.playerMove = playerMove;

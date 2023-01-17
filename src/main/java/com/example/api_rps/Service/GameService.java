@@ -33,10 +33,11 @@ public class GameService {
                         UUID.randomUUID(),
                         playerRepo.findById(playerid).get(),
                         null,
-                       OPEN,
-                        OPEN,
+                      null,
                         null,
-                       null
+                       OPEN,
+                        OPEN
+
 
                 );
 
@@ -60,11 +61,11 @@ public class GameService {
             gameEntity = gameRepo.findById(gameid).get();
             if (gameEntity.getPlayerOne().getPlayerid().equals(playerid)) {
                 if (gameEntity.getPlayerMove().wins_over(gameEntity.getOpponentMove())) {
-                    gameEntity.setPlayer_gamestatus(WIN);
+                    gameEntity.setPlayergameStatus(WIN);
                 } else if (gameEntity.getOpponentMove().wins_over(gameEntity.getPlayerMove())) {
-                    gameEntity.setPlayer_gamestatus(LOSE);
+                    gameEntity.setPlayergameStatus(LOSE);
                 } else {
-                    gameEntity.setPlayer_gamestatus(DRAW);
+                    gameEntity.setPlayergameStatus(DRAW);
                 }
 
             }
@@ -74,11 +75,11 @@ public class GameService {
             gameEntity = gameRepo.findById(gameid).get();
             if (gameEntity.getPlayerTwo().getPlayerid().equals(playerid)) {
                 if (gameEntity.getPlayerMove().wins_over(gameEntity.getOpponentMove())) {
-                    gameEntity.setOpponent_gamestatus(WIN);
+                    gameEntity.setOpponentgameStatus(WIN);
                 } else if (gameEntity.getOpponentMove().wins_over(gameEntity.getPlayerMove())) {
-                    gameEntity.setOpponent_gamestatus(LOSE);
+                    gameEntity.setOpponentgameStatus(LOSE);
                 } else {
-                    gameEntity.setOpponent_gamestatus(DRAW);
+                    gameEntity.setOpponentgameStatus(DRAW);
                 }
 
             }
@@ -113,10 +114,10 @@ public class GameService {
         if (gameRepo.existsById(gameid))  {
             gameEntity = gameRepo.findById(gameid).get();
             //and is open, then you can join
-            if(gameEntity.getPlayer_gamestatus() == GameStatus.OPEN) {
+            if(gameEntity.getPlayergameStatus()== GameStatus.OPEN) {
                 gameEntity.setPlayerTwo(playerRepo.getReferenceById(playerid));
-                gameEntity.setPlayer_gamestatus(ACTIVE);
-                gameEntity.setOpponent_gamestatus(ACTIVE);
+                gameEntity.setPlayergameStatus(ACTIVE);
+                gameEntity.setOpponentgameStatus(ACTIVE);
                 //Now that another player has joined the status changes from open to active
             }
                gameRepo.save(gameEntity);
@@ -160,15 +161,31 @@ public class GameService {
             }
 
         if (gameEntity.getPlayerOneMove() != null && gameEntity.getPlayerTwoMove() != null) {
-           GameStatus evaluatedMove = moveHandler.handlesMoves(gameEntity.getPlayerOneMove(),gameEntity.getPlayerTwoMove());
 
-           if(gameEntity.getPlayerOne().getPlayerid().equals(playerid)){
-               gameEntity.setPlayer_gamestatus(evaluatedMove);
-           }
-           if (gameEntity.getPlayerTwo().getPlayerid().equals(playerid)) {
-                gameEntity.setOpponent_gamestatus(evaluatedMove);
-           }
-        }
+                if (gameEntity.getPlayerOne().getPlayerid().equals(playerid)) {
+                    if (gameEntity.getPlayerMove().wins_over(gameEntity.getOpponentMove())) {
+                        gameEntity.setPlayergameStatus(WIN);
+                    } else if (gameEntity.getOpponentMove().wins_over(gameEntity.getPlayerMove())) {
+                        gameEntity.setPlayergameStatus(LOSE);
+                    } else {
+                        gameEntity.setPlayergameStatus(DRAW);
+                    }
+
+                }
+            }
+
+        if (gameEntity.getPlayerOne().getPlayerid().equals(playerid))
+                if (gameEntity.getPlayerTwo().getPlayerid().equals(playerid)) {
+                    if (gameEntity.getPlayerMove().wins_over(gameEntity.getOpponentMove())) {
+                        gameEntity.setOpponentgameStatus(WIN);
+                    } else if (gameEntity.getOpponentMove().wins_over(gameEntity.getPlayerMove())) {
+                        gameEntity.setOpponentgameStatus(LOSE);
+                    } else {
+                        gameEntity.setOpponentgameStatus(DRAW);
+                    }
+
+                }
+
                 gameRepo.save(gameEntity);
                 return Optional.of(gameEntity);
             }
