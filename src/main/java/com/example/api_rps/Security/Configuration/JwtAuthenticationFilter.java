@@ -34,7 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String JwtToken;
         final String userName;
         //Adding a check
-        if (authenticationHeader!= null && authenticationHeader.startsWith("Bearer ")) {
+        if (authenticationHeader == null && authenticationHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request,response);
             return;
         }
@@ -57,6 +57,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         //Building the details out of the http request
                         new WebAuthenticationDetailsSource().buildDetails(request)
                 );
+                //Updating the security contect holder
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
         }
 
