@@ -14,10 +14,11 @@ public class ApplicationConfiguration {
 
     private final UserRepo userRepo;
 
+    //This is the UserDetailsService
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> userRepo.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User doesnt exist"));
     }
 
 }
