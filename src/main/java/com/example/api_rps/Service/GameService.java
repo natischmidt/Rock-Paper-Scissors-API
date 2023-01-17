@@ -52,9 +52,10 @@ public class GameService {
         return gameRepo.findAll();
     }
 
-    public Optional<GameEntity> Results(UUID gameid, UUID playerid) throws GameNotFoundExeption {
+    public Optional<GameEntity> Results(UUID gameid, UUID playerid) throws GameNotFoundExeption  {
         GameEntity gameEntity;
-        // checking result of game for p1
+
+
         if (gameRepo.existsById(gameid)) {
             gameEntity = gameRepo.findById(gameid).get();
             if (gameEntity.getPlayerOne().getPlayerid().equals(playerid)) {
@@ -65,29 +66,24 @@ public class GameService {
                 } else {
                     gameEntity.setGameStatus(DRAW);
                 }
-
             }
-        }
-        // checking result of game for p2
-        if (gameRepo.existsById(gameid)) {
-            gameEntity = gameRepo.findById(gameid).get();
             if (gameEntity.getPlayerTwo().getPlayerid().equals(playerid)) {
-                if (gameEntity.getPlayerMove().wins_over(gameEntity.getOpponentMove())) {
+                if (gameEntity.getOpponentMove().wins_over(gameEntity.getPlayerMove())) {
                     gameEntity.setGameStatus(WIN);
-                } else if (gameEntity.getOpponentMove().wins_over(gameEntity.getPlayerMove())) {
+                } else if (gameEntity.getPlayerMove().wins_over(gameEntity.getOpponentMove())) {
                     gameEntity.setGameStatus(LOSE);
                 } else {
                     gameEntity.setGameStatus(DRAW);
                 }
-
             }
         } else {
-            throw new GameNotFoundExeption("Game doesnt exist");
+            throw new GameNotFoundExeption("Game not found.");
         }
-        //saving
+
         gameRepo.save(gameEntity);
         return Optional.of(gameEntity);
     }
+
 
 
     //return info for a given game via the game uuid
