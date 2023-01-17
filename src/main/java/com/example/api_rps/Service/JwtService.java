@@ -42,11 +42,17 @@ public class JwtService {
         return claimResolver.apply(claims);
     }
 
+    //This method will generate an usertoken
+    public String generateToken(UserDetails userDetails){
+        return generateToken(new HashMap<>(), userDetails);
+    }
+
+
     public String generateToken(Map<String,Object> extraClaims, UserDetails userDetails){
         /*
          This method takes a map of string and object as an inparameter,
          the map containing a map of extra claims that I want to add,
-         passing my user details.  */
+         passing my user details to generate a token. */
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
@@ -55,6 +61,7 @@ public class JwtService {
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
+        //The expiration time is set to 24 hours
 
     }
 
