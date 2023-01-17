@@ -1,4 +1,6 @@
 package com.example.api_rps.User;
 
-public class Role {
+public enum Role {
+    USER,
+    ADMIN
 }
