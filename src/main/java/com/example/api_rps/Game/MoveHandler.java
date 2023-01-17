@@ -8,17 +8,15 @@ public class MoveHandler {
 
 public GameStatus handlesMoves(Move playerOne,Move playerTwo) {
 
-    GameStatus evaluatedMove;
+    GameStatus evaluatedMove = GameStatus.DRAW;
 
     if (playerOne.wins_over(playerTwo)){
         evaluatedMove = GameStatus.WIN;
     }
-    if (playerTwo.wins_over(playerOne))
-    {
-        evaluatedMove = GameStatus.LOSE;
-    }
-    else
+
+    else if ( playerTwo.wins_over(playerOne)){
         evaluatedMove = GameStatus.DRAW;
+    }
 
 
     return evaluatedMove;
