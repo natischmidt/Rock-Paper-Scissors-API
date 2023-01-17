@@ -16,16 +16,19 @@ public class JwtService {
     
     private static final String SECRET_KEY = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
 
+    //Using the method to extract a specific claim here you can extract the username
     public String extractUserName(String token) {
-        return null;
+        return extractClaim(token,Claims::getSubject);
     }
 
+    //This method is able to extract a specif claim
     public <T> T extractClaim(String token, Function <Claims,T> claimResolver){
 
         final Claims claims = extractAllClaims(token);
         return claimResolver.apply(claims);
     }
 
+    //Method to extract ALL claims
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJwt(token)
                 .getBody();
