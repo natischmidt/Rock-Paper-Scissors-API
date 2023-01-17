@@ -53,7 +53,7 @@ public class GameController {
     public List<GameEntity> OpenGames() {
         return gameService.OpenGames()
                 .stream()
-                .filter(games -> games.getPlayergameStatus().
+                .filter(games -> games.getGameStatus().
                         equals(GameStatus.OPEN))
                 .collect(Collectors.toList());
     }
