@@ -1,8 +1,10 @@
 package com.example.api_rps.Controller;
 
 
+import com.example.api_rps.Security.Authenticstion.AuthenticationRequest;
 import com.example.api_rps.Security.Authenticstion.AuthenticationResponse;
 import com.example.api_rps.Security.Authenticstion.RegisterRequest;
+import com.example.api_rps.Service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 
 public class AuthenticationController {
+
+    private final AuthenticationService service;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
