@@ -25,7 +25,7 @@ public class User implements UserDetails{
 
         @Id
         @GeneratedValue
-        private Integer id;
+        private  Integer id;
         private String username;
         private String password;
 
