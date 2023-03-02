@@ -23,6 +23,7 @@ public class GameController {
    I'm using the game container to start a game with the token given in earlier step auth/token.
    I use my gameserive to invoke Start and map it to the DTO
     */
+    @CrossOrigin
     @PostMapping("/games/start")
     public GameContainer startGame(@RequestHeader(value = "token") UUID player_uuid) {
 
@@ -35,6 +36,7 @@ public class GameController {
     //Join Game
     Similar as above, though now im joining an open game with a player uuid
      */
+    @CrossOrigin
     @PostMapping("/join/{gameId}")
     public GameContainer joinGame(@RequestHeader(value = "token") UUID player_uuid,
                                   @PathVariable("gameId") UUID game_uuid) throws GameNotFoundExeption {
@@ -48,7 +50,7 @@ public class GameController {
     //Here I list games, using stream and filter to get only the ones with the gamestatus open
     //tested,working
     */
-
+    @CrossOrigin
     @GetMapping("/games")
     public List<GameEntity> OpenGames() {
         return gameService.OpenGames()
@@ -62,6 +64,7 @@ public class GameController {
     /*Game info
     Calling all saved game info for a game via game uuid from Gameservice
    */
+    @CrossOrigin
     @GetMapping("/games/{gameId}")
     public GameContainer Info(@PathVariable("gameId") UUID game_uuid) throws GameNotFoundExeption {
         return gameService.Info(game_uuid)
@@ -86,6 +89,7 @@ public class GameController {
     This request takes the Game move via the url (Pathvariabel), the game id in the request body, and the
     player uuid as a token, to map a move rock paper, scissor to a specific game and player
      */
+    @CrossOrigin
     @PostMapping("/games/move/{sign}")
     public GameContainer addPlayerMove(@PathVariable(name = "sign") String sign,
                                        @RequestBody GameContainer gameContainer,
@@ -99,6 +103,7 @@ public class GameController {
 
 
     //with the url/pathvariabel i set the gameid the token is the playerid
+    @CrossOrigin
     @GetMapping("/games/result/{gameId}")
     public GameContainer showResult(@PathVariable("gameId") UUID gameId,
                                      @RequestHeader(value = "token") UUID playerId) throws GameNotFoundExeption {

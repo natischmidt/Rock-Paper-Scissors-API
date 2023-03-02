@@ -21,6 +21,7 @@ public class PlayerController {
     /*Get token
     Here a Player is created via playerService and their playerid(uuid) is returned
     */
+    @CrossOrigin
     @GetMapping("auth/token")
     public UUID createPlayer(){
         return playerService.createPlayer().getPlayerid();
@@ -29,6 +30,7 @@ public class PlayerController {
     /*Set name
     A name is mapped to a player whose id is given as a token(via playerservice)
     */
+    @CrossOrigin
     @PostMapping("/user/name")
     public void setPlayerName(@RequestBody PlayerContainer playerContainer,
                               @RequestHeader(value = "token") UUID playerId)  {
