@@ -60,4 +60,5 @@ The Rock-Paper-Scissors API provides endpoints to create players, start and join
      - Method: `GET`
      - Description: Shows the result of a completed game.
 
-
+Security
+This API implements secure JWT (JSON Web Token) authentication, ensuring that player actions are authenticated and authorized. Each player is assigned a unique token upon creation, which is then used to authenticate requests.
